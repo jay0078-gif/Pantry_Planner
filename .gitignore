@@ -1,0 +1,12 @@
+.DS_Store
+.idea/
+.metadata/
+
+**/.DS_Store
+**/.idea/
+**/.metadata/
+
+**/node_modules/
+**/dist/
+**/target/
+**/*.log
