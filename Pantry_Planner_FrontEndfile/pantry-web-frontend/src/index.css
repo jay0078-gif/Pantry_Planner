@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@layer utilities {
+/* Base tokens (will be overridden by theme classes) */
+.brand-gradient { @apply bg-gradient-to-r from-indigo-700 to-indigo-600; }
+.brand-text { @apply text-indigo-600; }
+.btn-brand { @apply inline-flex items-center gap-2 rounded-md bg-indigo-600 text-white px-3 py-2 hover:bg-indigo-700 transition; }
+.card { @apply rounded-xl border border-slate-200 bg-white shadow-sm; }
+.progress { @apply h-2 rounded bg-slate-200; }
+.progress-bar { @apply h-2 rounded bg-indigo-600; }
+
+/* Theme: Indigo (default) */
+.theme-indigo .brand-gradient { @apply from-indigo-700 to-indigo-600; }
+.theme-indigo .brand-text { @apply text-indigo-600; }
+.theme-indigo .btn-brand { @apply bg-indigo-600 hover:bg-indigo-700; }
+.theme-indigo .progress-bar { @apply bg-indigo-600; }
+
+/* Theme: Mint */
+.theme-mint .brand-gradient { @apply from-emerald-600 to-teal-500; }
+.theme-mint .brand-text { @apply text-emerald-600; }
+.theme-mint .btn-brand { @apply bg-emerald-600 hover:bg-emerald-700; }
+.theme-mint .progress-bar { @apply bg-emerald-600; }
+
+/* Theme: Tomato */
+.theme-tomato .brand-gradient { @apply from-orange-600 to-rose-600; }
+.theme-tomato .brand-text { @apply text-rose-600; }
+.theme-tomato .btn-brand { @apply bg-rose-600 hover:bg-rose-700; }
+.theme-tomato .progress-bar { @apply bg-rose-600; }
+
+/* Theme: Slate (neutral) */
+.theme-slate .brand-gradient { @apply from-slate-800 to-slate-700; }
+.theme-slate .brand-text { @apply text-slate-700; }
+.theme-slate .btn-brand { @apply bg-slate-800 hover:bg-slate-900; }
+.theme-slate .progress-bar { @apply bg-slate-800; }
+
+/* Hide horizontal scrollbar utility (for nav on tiny screens) */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+/* 🌿 Mint color palette */
+:root {
+  --mint-dark: #3eb489;  /* main mint tone */
+  --mint-light: #7de2b8; /* soft highlight */
+}
+
+/* Applying consistent navbar background */
+/* 🌿 Darker mint gradient for navbar */
+.bg-mint-gradient {
+  background: linear-gradient(90deg, #2aa182 0%, #3eb489 100%);
+}

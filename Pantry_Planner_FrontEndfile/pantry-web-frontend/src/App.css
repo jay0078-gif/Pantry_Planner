@@ -1,0 +1,37 @@
+/* ───────────────────────────────────────────────
+   GLOBAL APP LAYOUT  •  CLEANED UP FOR TAILWIND
+──────────────────────────────────────────────── */
+
+/* Center main root content but don't constrain TopNav */
+#root {
+  margin: 0 auto;
+  min-height: 100vh;
+  text-align: left;
+  background-color: theme("colors.slate.50"); /* nice neutral backdrop */
+}
+
+/* Card defaults (extends Tailwind's .card utility if needed) */
+.card {
+  @apply rounded-xl border border-slate-200 bg-white shadow-sm p-4;
+}
+
+/* Optional container wrapper for tablet/desktop widths */
+.container {
+  @apply max-w-6xl mx-auto px-4;
+}
+
+/* Remove leftover Vite demo styles */
+.logo,
+.read-the-docs {
+  display: none;
+}
+
+/* Example keyframes (kept if you still animate a logo somewhere) */
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

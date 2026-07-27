@@ -1,0 +1,10 @@
+{
+  "name": "pantry-first-recipe-planner",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix Pantry_Planner_FrontEndfile/pantry-web-frontend run dev",
+    "build": "npm --prefix Pantry_Planner_FrontEndfile/pantry-web-frontend run build",
+    "lint": "npm --prefix Pantry_Planner_FrontEndfile/pantry-web-frontend run lint",
+    "preview": "npm --prefix Pantry_Planner_FrontEndfile/pantry-web-frontend run preview"
+  }
+}

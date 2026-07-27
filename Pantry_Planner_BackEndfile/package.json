@@ -1,0 +1,10 @@
+{
+  "name": "pantry-planner-backend",
+  "private": true,
+  "scripts": {
+    "start": "cd Pantry_Planner && ./mvnw spring-boot:run",
+    "dev": "cd Pantry_Planner && ./mvnw spring-boot:run",
+    "build": "cd Pantry_Planner && ./mvnw package",
+    "test": "cd Pantry_Planner && ./mvnw test"
+  }
+}

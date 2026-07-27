@@ -1,0 +1,1253 @@
+[
+{
+"name": "Tomato Pasta",
+"ingredients": ["pasta","tomato","garlic","olive oil","salt"],
+"instructions": "Boil pasta. Saute garlic in olive oil, add tomato and salt. Toss with pasta."
+},
+{
+"name": "Veg Omelette",
+"ingredients": ["egg","onion","tomato","salt","pepper"],
+"instructions": "Beat eggs with salt and pepper. Saute onion and tomato, add eggs and cook."
+},
+{
+"name": "Peanut Butter Toast",
+"ingredients": ["bread","peanut butter"],
+"instructions": "Toast bread. Spread peanut butter."
+},
+{
+"name": "Scrambled Eggs on Toast",
+"ingredients": ["egg","butter","salt","pepper","bread"],
+"instructions": "Whisk eggs with salt and pepper. Melt butter and scramble eggs. Serve on toast."
+},
+{
+"name": "Grilled Cheese Sandwich",
+"ingredients": ["bread","butter","cheese"],
+"instructions": "Butter bread, add cheese, and grill in a pan until golden and melty."
+},
+{
+"name": "Avocado Toast",
+"ingredients": ["bread","avocado","lemon","salt","pepper"],
+"instructions": "Mash avocado with lemon, salt, and pepper. Spread on toast."
+},
+{
+"name": "Banana Pancakes",
+"ingredients": ["banana","milk","flour","baking powder","egg","sugar","butter"],
+"instructions": "Mix mashed banana, milk, egg, flour, sugar, and baking powder. Cook pancakes in butter."
+},
+{
+"name": "Oatmeal with Banana",
+"ingredients": ["oats","milk","banana","honey","salt"],
+"instructions": "Cook oats with milk and a pinch of salt. Top with sliced banana and honey."
+},
+{
+"name": "Yogurt Parfait",
+"ingredients": ["yogurt","oats","honey","berries"],
+"instructions": "Layer yogurt, oats, berries, and drizzle with honey."
+},
+{
+"name": "French Toast",
+"ingredients": ["bread","egg","milk","sugar","butter"],
+"instructions": "Whisk egg, milk, and sugar. Dip bread and cook in butter until golden."
+},
+{
+"name": "Breakfast Burrito",
+"ingredients": ["tortilla","egg","onion","tomato","cheese","salt","pepper"],
+"instructions": "Scramble eggs with onion and tomato. Wrap in tortilla with cheese."
+},
+{
+"name": "Smoothie Bowl",
+"ingredients": ["banana","yogurt","honey","oats"],
+"instructions": "Blend banana and yogurt. Pour in a bowl and top with oats and honey."
+},
+{
+"name": "Spaghetti Aglio e Olio",
+"ingredients": ["pasta","garlic","olive oil","chili flakes","parsley","salt"],
+"instructions": "Cook pasta. Saute garlic and chili flakes in olive oil. Toss with pasta and parsley."
+},
+{
+"name": "Pesto Pasta",
+"ingredients": ["pasta","basil leaves","garlic","olive oil","parmesan","salt"],
+"instructions": "Blend basil, garlic, olive oil, and parmesan. Toss with hot pasta."
+},
+{
+"name": "Fried Rice",
+"ingredients": ["rice","egg","carrot","peas","onion","garlic","soy sauce","olive oil"],
+"instructions": "Saute veg in oil, add egg and scramble. Add rice and soy sauce; stir‑fry."
+},
+{
+"name": "Veggie Quesadilla",
+"ingredients": ["tortilla","cheese","bell pepper","onion","olive oil","salt"],
+"instructions": "Cook peppers and onion. Fill tortilla with veg and cheese; toast until crisp."
+},
+{
+"name": "Tomato Soup",
+"ingredients": ["tomato","onion","garlic","butter","vegetable broth","salt","pepper"],
+"instructions": "Saute onion and garlic in butter, add tomato and broth, simmer and blend."
+},
+{
+"name": "Chickpea Salad",
+"ingredients": ["chickpea","cucumber","tomato","onion","lemon","olive oil","salt","pepper"],
+"instructions": "Mix chickpea with chopped veg. Dress with lemon, olive oil, salt, and pepper."
+},
+{
+"name": "Caprese Salad",
+"ingredients": ["tomato","mozzarella","basil leaves","olive oil","salt","pepper"],
+"instructions": "Layer tomato and mozzarella. Top with basil, olive oil, salt, and pepper."
+},
+{
+"name": "Chicken Stir Fry",
+"ingredients": ["chicken breast","bell pepper","onion","garlic","soy sauce","olive oil","pepper","salt"],
+"instructions": "Stir‑fry chicken, add veg and garlic. Splash soy sauce; cook until tender‑crisp."
+},
+{
+"name": "Beef Tacos",
+"ingredients": ["tortilla","ground beef","onion","tomato","lettuce","cheese","chili powder","salt"],
+"instructions": "Cook beef with onion and chili powder. Serve in tortillas with toppings."
+},
+{
+"name": "Baked Chicken and Potatoes",
+"ingredients": ["chicken breast","potato","garlic","olive oil","paprika","salt","pepper"],
+"instructions": "Toss chicken and potato with oil and spices. Bake until cooked through."
+},
+{
+"name": "Garlic Butter Shrimp Pasta",
+"ingredients": ["pasta","shrimp","garlic","butter","olive oil","parsley","salt","pepper"],
+"instructions": "Saute garlic in butter and oil, add shrimp. Toss with pasta and parsley."
+},
+{
+"name": "Veggie Stir Fry",
+"ingredients": ["broccoli","carrot","bell pepper","onion","garlic","soy sauce","olive oil","salt"],
+"instructions": "Stir‑fry veg in oil, add garlic and soy sauce. Cook until crisp‑tender."
+},
+{
+"name": "Hummus",
+"ingredients": ["chickpea","tahini","garlic","lemon","olive oil","salt"],
+"instructions": "Blend chickpea, tahini, garlic, lemon, and olive oil until smooth."
+},
+{
+"name": "Guacamole",
+"ingredients": ["avocado","onion","tomato","lime","salt"],
+"instructions": "Mash avocado with onion, tomato, lime juice, and salt."
+},
+{
+"name": "Fresh Tomato Salsa",
+"ingredients": ["tomato","onion","jalapeno","lime","cilantro","salt"],
+"instructions": "Finely chop everything, mix with lime juice and salt."
+},
+{
+"name": "Garlic Bread",
+"ingredients": ["bread","garlic","butter","parsley","salt"],
+"instructions": "Mix minced garlic with butter and parsley. Spread on bread and toast."
+},
+{
+"name": "Lemon Rice",
+"ingredients": ["rice","lemon","olive oil","turmeric","salt"],
+"instructions": "Cook rice. Toss with lemon juice, turmeric, oil, and salt."
+},
+{
+"name": "Dal Tadka",
+"ingredients": ["lentil","onion","tomato","garlic","turmeric","cumin","olive oil","salt"],
+"instructions": "Cook lentils. Temper garlic, onion, tomato, and spices in oil; mix into lentils."
+},
+{
+"name": "Chana Masala",
+"ingredients": ["chickpea","onion","tomato","garlic","ginger","cumin","coriander powder","garam masala","salt"],
+"instructions": "Saute aromatics, add spices and tomato. Add chickpea and simmer."
+},
+{
+"name": "Masala Omelette",
+"ingredients": ["egg","onion","tomato","green chili","salt","pepper","olive oil"],
+"instructions": "Beat eggs with chopped veg and spices. Cook in a little oil."
+},
+{
+"name": "Tuna Salad Sandwich",
+"ingredients": ["tuna","bread","mayonnaise","onion","lettuce","lemon","pepper","salt"],
+"instructions": "Mix tuna with mayo, onion, lemon, salt, pepper. Stuff between bread with lettuce."
+},
+{
+"name": "Chicken Salad Wrap",
+"ingredients": ["tortilla","chicken breast","mayonnaise","lettuce","onion","pepper","salt"],
+"instructions": "Mix cooked chicken with mayo and onion. Wrap in tortilla with lettuce."
+},
+{
+"name": "Potato Wedges",
+"ingredients": ["potato","olive oil","paprika","salt","pepper"],
+"instructions": "Toss wedges with oil and spices. Bake until crispy."
+},
+{
+"name": "Sheet Pan Roasted Vegetables",
+"ingredients": ["broccoli","carrot","bell pepper","onion","olive oil","salt","pepper"],
+"instructions": "Toss veg with oil, salt, pepper. Roast until tender and browned."
+},
+{
+"name": "Pasta Primavera",
+"ingredients": ["pasta","broccoli","carrot","bell pepper","garlic","olive oil","parmesan","salt","pepper"],
+"instructions": "Saute veg with garlic, toss with pasta, oil, and parmesan."
+},
+{
+"name": "Mac and Cheese",
+"ingredients": ["pasta","cheddar cheese","milk","butter","flour","salt","pepper"],
+"instructions": "Make a roux with butter and flour, add milk and cheese. Mix with cooked pasta."
+},
+{
+"name": "Chocolate Mug Cake",
+"ingredients": ["flour","sugar","cocoa powder","milk","olive oil","baking powder","salt"],
+"instructions": "Mix all in a mug and microwave until set."
+},
+{
+"name": "Fruit Salad",
+"ingredients": ["apple","banana","orange","grapes","honey","lemon"],
+"instructions": "Chop fruit and toss with honey and lemon juice."
+},
+{
+"name": "Spinach Omelette",
+"ingredients": ["egg","spinach","onion","olive oil","salt","pepper"],
+"instructions": "Beat eggs with salt and pepper. Saute onion and spinach in oil; add eggs and cook."
+},
+{
+"name": "Shakshuka",
+"ingredients": ["egg","tomato","onion","garlic","chili flakes","olive oil","salt","pepper"],
+"instructions": "Saute onion and garlic; add tomato and chili; simmer. Crack in eggs and cook covered."
+},
+{
+"name": "Lemon Garlic Chicken",
+"ingredients": ["chicken breast","garlic","lemon","olive oil","salt","pepper"],
+"instructions": "Sear chicken in oil; add garlic and lemon juice; simmer until cooked through."
+},
+{
+"name": "Chicken Quesadilla",
+"ingredients": ["tortilla","chicken breast","onion","bell pepper","cheese","olive oil","salt","pepper"],
+"instructions": "Cook chicken with onion and pepper; fill tortilla with mix and cheese; toast."
+},
+{
+"name": "Tuna Melt",
+"ingredients": ["bread","tuna","mayonnaise","onion","cheese","butter","salt","pepper"],
+"instructions": "Mix tuna, mayo, onion; spread on bread with cheese; grill in butter."
+},
+{
+"name": "Veggie Club Sandwich",
+"ingredients": ["bread","lettuce","tomato","cucumber","mayonnaise","cheese","salt","pepper"],
+"instructions": "Layer bread with mayo, veggies, and cheese; season; slice."
+},
+{
+"name": "Tomato Basil Bruschetta",
+"ingredients": ["bread","tomato","garlic","basil leaves","olive oil","salt","pepper"],
+"instructions": "Toast bread; top with chopped tomato, garlic, basil, oil, salt, pepper."
+},
+{
+"name": "Tortilla Margherita Pizza",
+"ingredients": ["tortilla","tomato","mozzarella","basil leaves","olive oil","salt"],
+"instructions": "Top tortilla with tomato and mozzarella; bake or pan-toast; add basil and oil."
+},
+{
+"name": "Chickpea Curry",
+"ingredients": ["chickpea","onion","tomato","garlic","ginger","cumin","coriander powder","turmeric","garam masala","olive oil","salt"],
+"instructions": "Saute aromatics and spices; add tomato and chickpea; simmer."
+},
+{
+"name": "Kidney Bean Chili",
+"ingredients": ["kidney bean","onion","tomato","garlic","chili powder","cumin","olive oil","salt","pepper"],
+"instructions": "Cook onion and garlic with spices; add tomato and beans; simmer."
+},
+{
+"name": "Paneer Tikka Wrap",
+"ingredients": ["paneer","yogurt","onion","bell pepper","garam masala","cumin","turmeric","lemon","tortilla","olive oil","salt"],
+"instructions": "Marinate paneer and veg in yogurt and spices; saute; wrap in tortillas."
+},
+{
+"name": "Tofu Stir Fry",
+"ingredients": ["tofu","broccoli","carrot","bell pepper","garlic","soy sauce","olive oil","salt","pepper"],
+"instructions": "Stir-fry tofu and veg; add soy and garlic; cook crisp-tender."
+},
+{
+"name": "Veg Noodles Stir Fry",
+"ingredients": ["noodles","carrot","bell pepper","cabbage","onion","garlic","soy sauce","olive oil","salt","pepper"],
+"instructions": "Boil noodles; stir-fry veg with garlic and soy; toss with noodles."
+},
+{
+"name": "Mushroom Pasta",
+"ingredients": ["pasta","mushroom","garlic","olive oil","parsley","parmesan","salt","pepper"],
+"instructions": "Saute mushrooms and garlic; toss with pasta, parsley, parmesan."
+},
+{
+"name": "Creamy Spinach Pasta",
+"ingredients": ["pasta","spinach","garlic","butter","flour","milk","parmesan","salt","pepper"],
+"instructions": "Make white sauce; add garlic/spinach; toss with pasta and parmesan."
+},
+{
+"name": "Alfredo Pasta",
+"ingredients": ["pasta","butter","garlic","flour","milk","parmesan","salt","pepper"],
+"instructions": "Cook pasta; make creamy sauce; combine."
+},
+{
+"name": "Garlic Mushroom Toast",
+"ingredients": ["bread","mushroom","garlic","butter","parsley","salt","pepper"],
+"instructions": "Saute mushrooms with garlic and butter; spoon over toast; add parsley."
+},
+{
+"name": "Burrito Bowl (Kidney Bean)",
+"ingredients": ["rice","kidney bean","corn","tomato","onion","lettuce","lemon","olive oil","salt","pepper"],
+"instructions": "Assemble rice, beans, and veg; dress with lemon, oil, salt, pepper."
+},
+{
+"name": "Chickpea Veg Wrap",
+"ingredients": ["tortilla","chickpea","cucumber","tomato","onion","lemon","olive oil","salt","pepper"],
+"instructions": "Mash chickpea with lemon and oil; fill tortilla with mix and veg."
+},
+{
+"name": "Pasta Salad",
+"ingredients": ["pasta","cucumber","tomato","onion","olive oil","lemon","parsley","salt","pepper"],
+"instructions": "Toss cooked pasta with veg, oil, lemon, parsley; season."
+},
+{
+"name": "Cucumber Tomato Sandwich",
+"ingredients": ["bread","cucumber","tomato","butter","salt","pepper"],
+"instructions": "Butter bread; layer cucumber and tomato; season."
+},
+{
+"name": "Egg Salad Sandwich",
+"ingredients": ["egg","bread","mayonnaise","onion","salt","pepper"],
+"instructions": "Mix chopped boiled eggs with mayo and onion; spread on bread."
+},
+{
+"name": "Potato Salad",
+"ingredients": ["potato","onion","mayonnaise","lemon","parsley","salt","pepper"],
+"instructions": "Boil potatoes; mix with onion, mayo, lemon, parsley; season."
+},
+{
+"name": "Roasted Sweet Potato",
+"ingredients": ["sweet potato","olive oil","salt","pepper","paprika"],
+"instructions": "Cube; toss with oil and spices; roast until tender."
+},
+{
+"name": "Roasted Cauliflower",
+"ingredients": ["cauliflower","olive oil","garlic","salt","pepper","paprika"],
+"instructions": "Toss florets with oil, garlic, spices; roast until browned."
+},
+{
+"name": "Aloo Gobi",
+"ingredients": ["potato","cauliflower","onion","tomato","garlic","turmeric","cumin","coriander powder","garam masala","olive oil","salt"],
+"instructions": "Saute onion/garlic with spices; add potato, cauliflower, tomato; cook tender."
+},
+{
+"name": "Stir-fried Cabbage",
+"ingredients": ["cabbage","carrot","onion","garlic","soy sauce","olive oil","salt","pepper"],
+"instructions": "Quick-fry cabbage, carrot, onion with garlic and soy."
+},
+{
+"name": "Pesto Grilled Cheese",
+"ingredients": ["bread","butter","cheese","basil leaves","garlic","olive oil","salt"],
+"instructions": "Blend basil, garlic, oil; spread on bread with cheese; grill."
+},
+{
+"name": "Lemon Herb Rice",
+"ingredients": ["rice","lemon","parsley","olive oil","salt"],
+"instructions": "Toss cooked rice with lemon, oil, parsley, and salt."
+},
+{
+"name": "Tomato Egg Drop Soup",
+"ingredients": ["tomato","egg","garlic","vegetable broth","olive oil","salt","pepper"],
+"instructions": "Simmer tomato and garlic in broth; drizzle beaten egg; season."
+},
+{
+"name": "Simple Chicken Soup",
+"ingredients": ["chicken breast","carrot","onion","garlic","vegetable broth","salt","pepper"],
+"instructions": "Simmer chicken and veg in broth; shred chicken; season."
+},
+{
+"name": "Garlic Butter Chicken Bites",
+"ingredients": ["chicken breast","garlic","butter","olive oil","parsley","salt","pepper"],
+"instructions": "Sear chicken cubes; add butter and garlic; toss with parsley."
+},
+{
+"name": "Chicken Rice Bowl",
+"ingredients": ["rice","chicken breast","soy sauce","garlic","onion","olive oil","salt","pepper"],
+"instructions": "Stir-fry chicken with garlic and onion; add soy; serve over rice."
+},
+{
+"name": "Spicy Peanut Noodles",
+"ingredients": ["noodles","peanut butter","soy sauce","garlic","chili flakes","lemon","honey"],
+"instructions": "Whisk sauce; toss with hot noodles and a bit of cooking water."
+},
+{
+"name": "Peanut Butter Banana Smoothie Bowl",
+"ingredients": ["banana","yogurt","peanut butter","honey","oats"],
+"instructions": "Blend banana, yogurt, peanut butter, honey; top with oats."
+},
+{
+"name": "Veggie Omelette Wrap",
+"ingredients": ["egg","tortilla","onion","tomato","bell pepper","olive oil","salt","pepper"],
+"instructions": "Make a veggie omelette; wrap in warm tortilla."
+},
+{
+"name": "Spinach Corn Sandwich",
+"ingredients": ["bread","spinach","corn","butter","cheese","salt","pepper"],
+"instructions": "Saute spinach and corn; spread on bread with cheese; grill."
+},
+{
+"name": "Corn Fried Rice",
+"ingredients": ["rice","corn","onion","garlic","soy sauce","olive oil","salt","pepper"],
+"instructions": "Fry onion/garlic; add rice and corn; season with soy."
+},
+{
+"name": "Masala Noodles",
+"ingredients": ["noodles","onion","tomato","green chili","turmeric","garam masala","olive oil","salt"],
+"instructions": "Cook noodles; saute aromatics and spices; toss together."
+},
+{
+"name": "Paneer Kathi Roll",
+"ingredients": ["tortilla","paneer","onion","tomato","green chili","garam masala","lemon","yogurt","olive oil","salt"],
+"instructions": "Saute paneer with spices; smear yogurt; fill tortillas; roll."
+},
+{
+"name": "Chickpea Rice",
+"ingredients": ["rice","chickpea","onion","tomato","garlic","cumin","turmeric","olive oil","salt"],
+"instructions": "Cook spiced onion/tomato; add chickpea and rice; toss."
+},
+{
+"name": "Egg Curry",
+"ingredients": ["egg","onion","tomato","garlic","ginger","turmeric","cumin","coriander powder","garam masala","olive oil","salt"],
+"instructions": "Make spiced tomato-onion gravy; add boiled eggs; simmer."
+},
+{
+"name": "Tomato Rice",
+"ingredients": ["rice","tomato","onion","garlic","chili flakes","olive oil","salt"],
+"instructions": "Saute onion and garlic; add tomato; fold in cooked rice; season."
+},
+{
+"name": "Lemon Garlic Broccoli",
+"ingredients": ["broccoli","garlic","olive oil","lemon","salt","pepper"],
+"instructions": "Saute broccoli with garlic; finish with lemon."
+},
+{
+"name": "Baked Oats",
+"ingredients": ["oats","banana","milk","baking powder","honey"],
+"instructions": "Mix or blend; bake until set and golden."
+},
+{
+"name": "Overnight Oats",
+"ingredients": ["oats","milk","yogurt","honey","banana"],
+"instructions": "Stir and chill overnight; top with banana."
+},
+{
+"name": "Veggie Frittata",
+"ingredients": ["egg","onion","bell pepper","spinach","cheese","olive oil","salt","pepper"],
+"instructions": "Saute veg; add beaten eggs and cheese; cook (stove or oven)."
+},
+{
+"name": "Stir-fried Green Beans",
+"ingredients": ["green beans","garlic","soy sauce","olive oil","salt","pepper"],
+"instructions": "Quick-fry beans with garlic; splash soy; season."
+},
+{
+"name": "Zucchini Stir Fry",
+"ingredients": ["zucchini","onion","garlic","soy sauce","olive oil","salt","pepper"],
+"instructions": "Saute zucchini and onion with garlic and soy."
+},
+{
+"name": "Egg Fried Noodles",
+"ingredients": ["noodles","egg","onion","garlic","soy sauce","olive oil","salt","pepper"],
+"instructions": "Scramble egg; stir-fry onion/garlic; toss with noodles and soy."
+},
+{
+"name": "Veg Pulao",
+"ingredients": ["rice","onion","peas","carrot","cumin","turmeric","garam masala","olive oil","salt"],
+"instructions": "Rinse 1 cup rice until water runs clear; soak 10 min. Heat 1 tbsp oil in a pot (medium). Add 1/2 tsp cumin; when aromatic add 1/2 cup chopped onion and sauté 2–3 min. Add 1/3 cup diced carrot and 1/3 cup peas; sauté 2 min. Add 1/4 tsp turmeric, 1/2 tsp garam masala, 1/2 tsp salt; stir. Add drained rice and 1 3/4 cups water; bring to boil. Cover, simmer low 12–14 min until water absorbs. Rest 5 min, fluff and serve."
+},
+{
+"name": "Chickpea Spinach Curry",
+"ingredients": ["chickpea","spinach","onion","tomato","garlic","ginger","cumin","turmeric","garam masala","olive oil","salt"],
+"instructions": "Heat 1 tbsp oil in a pan (medium). Sauté 1/2 cup chopped onion 3–4 min. Add 1 tsp minced garlic and 1/2 tsp minced ginger; cook 30 sec. Stir in 1 tsp cumin, 1/2 tsp turmeric; cook 30 sec. Add 1 cup chopped tomato, 1/2 tsp salt; simmer 5–6 min to thicken. Stir in 1 1/2 cups cooked chickpea and 2 cups chopped spinach; cook 3–4 min until wilted. Finish with 1/2 tsp garam masala and adjust salt."
+},
+{
+"name": "Paneer Bhurji",
+"ingredients": ["paneer","onion","tomato","green chili","turmeric","cumin","garam masala","olive oil","salt"],
+"instructions": "Crumble 200 g paneer. Heat 1 tbsp oil; add 1/2 tsp cumin. Sauté 1/2 cup chopped onion and 1 finely chopped green chili 3–4 min. Add 1/2 cup chopped tomato, 1/4 tsp turmeric, 1/2 tsp salt; cook 3–4 min until soft. Add paneer; toss 2–3 min. Finish with 1/2 tsp garam masala; serve with bread or tortillas."
+},
+{
+"name": "Egg Bhurji",
+"ingredients": ["egg","onion","tomato","green chili","turmeric","olive oil","salt","pepper"],
+"instructions": "Beat 3 eggs with a pinch of salt/pepper. Heat 1 tbsp oil; sauté 1/3 cup chopped onion and 1 small chopped green chili 2–3 min. Add 1/3 cup chopped tomato and 1/4 tsp turmeric; cook 2 min. Pour eggs; scramble gently 2–3 min until just set. Adjust salt; serve hot."
+},
+{
+"name": "Hearty Lentil Soup",
+"ingredients": ["lentil","onion","carrot","garlic","vegetable broth","olive oil","salt","pepper"],
+"instructions": "Rinse 1 cup lentils. Heat 1 tbsp oil in a pot; sauté 1/2 cup diced onion and 1/2 cup diced carrot 3–4 min. Add 2 minced garlic cloves; 30 sec. Add lentils and 4 cups vegetable broth, 1/2 tsp salt; simmer 20–25 min until tender. Season with pepper; blend half for creaminess (optional)."
+},
+{
+"name": "Egg Fried Rice (Street-Style)",
+"ingredients": ["rice","egg","onion","garlic","soy sauce","olive oil","salt","pepper"],
+"instructions": "Use 2 cups cold cooked rice. Beat 2 eggs with a pinch of salt. Heat 1 tbsp oil in a wok (high). Scramble eggs softly; remove. Add 1 tbsp oil, sauté 1/3 cup finely chopped onion and 1 minced garlic clove 45 sec. Add rice; toss 1–2 min. Splash 1–1.5 tbsp soy sauce; toss. Return eggs; pepper to taste."
+},
+{
+"name": "Veg Ramen Bowl",
+"ingredients": ["noodles","vegetable broth","garlic","ginger","soy sauce","mushroom","spinach","olive oil","salt","pepper"],
+"instructions": "Heat 1 tsp oil; sauté 1 minced garlic clove and 1 tsp minced ginger 30 sec. Add 3 cups vegetable broth and 1–2 tbsp soy sauce; simmer 3–4 min. Add 1 cup sliced mushroom; cook 3 min. Add noodles; cook per pack minus 30 sec. Stir in 2 cups spinach until wilted; season."
+},
+{
+"name": "Caprese Sandwich",
+"ingredients": ["bread","tomato","mozzarella","basil leaves","olive oil","salt","pepper"],
+"instructions": "Lightly toast bread. Layer tomato slices, mozzarella, and basil. Drizzle olive oil; season with salt/pepper. Press, slice, and serve immediately."
+},
+{
+"name": "Pasta Arrabbiata",
+"ingredients": ["pasta","tomato","garlic","chili flakes","olive oil","salt"],
+"instructions": "Cook pasta al dente; reserve 1/2 cup water. Sauté 2 sliced garlic cloves in 2 tbsp olive oil (medium) 30–60 sec. Add 1/2–1 tsp chili flakes and 1 1/2 cups crushed tomato, 1/2 tsp salt; simmer 8–10 min. Toss with pasta, adding splash of pasta water until glossy."
+},
+{
+"name": "Broccoli Alfredo Pasta",
+"ingredients": ["pasta","broccoli","butter","garlic","milk","parmesan","flour","salt","pepper"],
+"instructions": "Blanch 2 cups small broccoli florets 2 min; drain. Cook pasta; reserve water. Melt 2 tbsp butter; sauté 1 minced garlic clove 30 sec. Whisk in 1 tbsp flour; cook 1 min. Gradually add 1 1/4 cups warm milk; simmer 3–4 min. Stir in 1/2 cup parmesan, salt/pepper. Toss pasta and broccoli; thin with pasta water if needed."
+},
+{
+"name": "Garlic Parmesan Roasted Potatoes",
+"ingredients": ["potato","garlic","parmesan","olive oil","salt","pepper"],
+"instructions": "Preheat 220°C/425°F. Toss 600 g diced potato with 2 tbsp olive oil, 2 minced garlic cloves, 1/2 tsp salt, pepper. Spread on tray; roast 25–30 min, flipping once. Toss hot with 1/3 cup grated parmesan."
+},
+{
+"name": "Crispy Roasted Chickpeas",
+"ingredients": ["chickpea","olive oil","paprika","salt","pepper"],
+"instructions": "Pat dry 2 cups cooked chickpea. Toss with 1 tbsp oil, 1 tsp paprika, 1/2 tsp salt, pepper. Roast at 200°C/400°F for 25–30 min, shaking pan once, until crisp."
+},
+{
+"name": "Greek Salad",
+"ingredients": ["cucumber","tomato","onion","olive","feta cheese","olive oil","lemon","salt","pepper"],
+"instructions": "Combine chunks of cucumber, tomato, and thin onion slices with pitted olives and diced feta. Dress with 2 tbsp olive oil, 1 tbsp lemon juice, salt, pepper; toss gently."
+},
+{
+"name": "Panzanella Salad",
+"ingredients": ["bread","tomato","cucumber","onion","olive oil","lemon","salt","pepper"],
+"instructions": "Toast bread cubes with a little oil until crisp. Toss with chopped tomato, cucumber, and thin onion. Dress with 2 tbsp olive oil, 1 tbsp lemon, salt, pepper; rest 10 min to soak."
+},
+{
+"name": "Palak Paneer",
+"ingredients": ["spinach","paneer","onion","tomato","garlic","ginger","cumin","garam masala","olive oil","salt"],
+"instructions": "Blanch 4 cups spinach 1 min; blend. Heat 1 tbsp oil; add 1/2 tsp cumin, then 1/2 cup onion; sauté 3–4 min. Add 1 tsp garlic, 1/2 tsp ginger; 30 sec. Add 1/2 cup tomato, 1/2 tsp salt; cook 4–5 min. Stir in spinach puree and 1/2 cup water; simmer 3 min. Add paneer cubes; heat 2 min. Finish with 1/2 tsp garam masala."
+},
+{
+"name": "Chicken Tacos",
+"ingredients": ["tortilla","chicken breast","onion","garlic","chili powder","salt","pepper","olive oil","lettuce","tomato","cheese"],
+"instructions": "Sauté 300 g diced chicken in 1 tbsp oil with 1/2 tsp chili powder, 1 minced garlic clove, salt/pepper until cooked. Warm tortillas. Fill with chicken, shredded lettuce, diced tomato, and cheese."
+},
+{
+"name": "Tuna Pasta Salad",
+"ingredients": ["pasta","tuna","mayonnaise","onion","cucumber","lemon","salt","pepper"],
+"instructions": "Cook and cool pasta. Mix 1 can tuna (drained) with 1/4 cup mayo, 2 tbsp finely chopped onion, 1/2 cup chopped cucumber, 1 tsp lemon juice, salt/pepper. Fold in pasta; chill 20 min."
+},
+{
+"name": "Baked Egg Muffins",
+"ingredients": ["egg","spinach","onion","bell pepper","cheese","salt","pepper","olive oil"],
+"instructions": "Grease a muffin tin. Whisk 6 eggs with salt/pepper. Stir in 1/2 cup chopped spinach, 1/4 cup diced onion, 1/4 cup diced bell pepper, 1/3 cup shredded cheese. Fill cups and bake at 190°C/375°F for 14–16 min."
+},
+{
+"name": "Oat Pancakes",
+"ingredients": ["oats","banana","egg","milk","baking powder","honey","salt"],
+"instructions": "Blend 1 cup oats to flour. Mix with 1 mashed banana, 1 egg, 1/2 cup milk, 1 tsp baking powder, pinch salt. Cook small pancakes on a lightly oiled pan 2–3 min per side. Drizzle honey."
+},
+{
+"name": "Smashed Potatoes",
+"ingredients": ["potato","olive oil","salt","pepper","garlic"],
+"instructions": "Boil small potatoes until tender; drain. Smash gently on a tray. Brush with oil, sprinkle minced garlic, salt/pepper. Roast at 220°C/425°F for 20–25 min until crisp."
+},
+{
+"name": "Tomato Cucumber Raita",
+"ingredients": ["yogurt","cucumber","tomato","salt","pepper"],
+"instructions": "Whisk 1 cup yogurt with 1/4 tsp salt. Stir in 1/2 cup finely chopped cucumber and 1/4 cup chopped tomato. Pepper to taste; chill 10 min."
+},
+{
+"name": "Garlic Soy Noodles",
+"ingredients": ["noodles","garlic","soy sauce","olive oil","spring onion","salt","pepper"],
+"instructions": "Cook noodles and drain. Heat 1 tbsp oil; sauté 2 minced garlic cloves 30 sec. Add noodles; toss with 1–2 tbsp soy sauce and pepper. Top with chopped spring onion."
+},
+{
+"name": "Spinach Chickpea Salad Bowl",
+"ingredients": ["spinach","chickpea","cucumber","tomato","onion","lemon","olive oil","salt","pepper"],
+"instructions": "Toss baby spinach with cooked chickpea, chopped cucumber, tomato, and a little onion. Dress with 2 tbsp olive oil, 1 tbsp lemon, salt/pepper."
+},
+{
+"name": "Chicken Tomato Rice (One-Pot)",
+"ingredients": ["rice","chicken breast","onion","garlic","tomato","olive oil","salt","pepper"],
+"instructions": "Sauté 1/2 cup onion and 1 minced garlic clove in 1 tbsp oil. Add 300 g diced chicken; brown 2–3 min. Stir in 1 cup rice and 1 cup chopped tomato; season. Add 2 cups water; simmer covered 15–18 min until rice is done."
+},
+{
+"name": "Mushroom Fried Rice",
+"ingredients": ["rice","mushroom","onion","garlic","soy sauce","olive oil","salt","pepper"],
+"instructions": "Heat 1 tbsp oil (high). Sauté 1 cup sliced mushroom until browned; add 1/4 cup onion and 1 minced garlic clove; 1 min. Add 2 cups cold rice and 1–1.5 tbsp soy sauce; toss 1–2 min. Pepper to taste."
+},
+{
+"name": "Lemon Herb Roasted Chicken",
+"ingredients": ["chicken breast","lemon","garlic","olive oil","salt","pepper"],
+"instructions": "Marinate chicken with 1 tbsp oil, 1 tbsp lemon juice, 1 minced garlic clove, salt/pepper 10 min. Bake at 200°C/400°F for 18–20 min or until cooked through; rest 5 min and slice."
+},
+{
+"name": "Tomato Corn Soup",
+"ingredients": ["tomato","corn","onion","garlic","vegetable broth","olive oil","salt","pepper"],
+"instructions": "Sauté 1/2 cup onion in 1 tbsp oil 3 min. Add 1 minced garlic clove; 30 sec. Add 2 cups chopped tomato, 1 cup corn, 2 cups broth, 1/2 tsp salt; simmer 12–15 min. Blend partly; season."
+},
+{
+"name": "Veggie Tortilla Pockets",
+"ingredients": ["tortilla","lettuce","tomato","cucumber","onion","mayonnaise","salt","pepper"],
+"instructions": "Spread a thin layer of mayo on tortillas. Fill with shredded lettuce, diced tomato, cucumber, and onion. Season lightly; fold and toast 1–2 min per side on a dry pan."
+},
+{
+"name": "Paneer Tikka Sandwich",
+"ingredients": ["paneer","yogurt","garam masala","cumin","turmeric","onion","tomato","bread","olive oil","salt"],
+"instructions": "Marinate paneer cubes with 2 tbsp yogurt, 1/2 tsp garam masala, pinch cumin/turmeric, and salt 10 min. Sauté in 1 tsp oil 3–4 min. Stuff in bread with onion/tomato; grill to golden."
+},
+{
+"name": "Tomato Basil Egg Skillet",
+"ingredients": ["egg","tomato","garlic","olive oil","salt","pepper","basil leaves"],
+"instructions": "Sauté 1 minced garlic clove in 1 tbsp oil 30 sec. Add 1 1/2 cups chopped tomato and 1/2 tsp salt; simmer 5–6 min. Make 2–3 wells; crack eggs; cover and cook on low 4–6 min until whites set. Finish with basil."
+},
+{
+"name": "Spinach Pesto Pasta",
+"ingredients": ["pasta","spinach","garlic","olive oil","parmesan","lemon","salt"],
+"instructions": "Cook pasta al dente; reserve 1/2 cup water. Blend 2 cups spinach, 1 garlic clove, 2 tbsp olive oil, 1/3 cup parmesan, squeeze of lemon, pinch of salt. Toss with hot pasta, loosening with pasta water until glossy."
+},
+{
+"name": "Roasted Veg Couscous",
+"ingredients": ["couscous","bell pepper","onion","olive oil","salt","pepper"],
+"instructions": "Roast diced bell pepper and onion with 1 tbsp oil, salt, pepper at 200°C/400°F for 12–15 min. Cover 1 cup couscous with 1 cup boiling water + pinch salt; rest 7 min and fluff. Fold in roasted veg; drizzle olive oil."
+},
+{
+"name": "Tuna Lemon Pasta",
+"ingredients": ["pasta","tuna","lemon","garlic","olive oil","parsley","salt","pepper"],
+"instructions": "Cook pasta. In pan, warm 2 tbsp olive oil, 1 minced garlic clove 30 sec. Add drained tuna, zest + juice of 1/2 lemon; toss 1 min. Add pasta, parsley, salt/pepper; loosen with pasta water."
+},
+{
+"name": "Chicken Pesto Wrap",
+"ingredients": ["tortilla","chicken breast","basil leaves","garlic","olive oil","parmesan","lettuce","salt","pepper"],
+"instructions": "Sear thin chicken strips with salt/pepper 4–6 min total. Blitz basil, garlic, oil, parmesan into a quick pesto. Spread on tortillas, add lettuce and chicken; roll and toast 1–2 min per side."
+},
+{
+"name": "Rice and Beans Bowl",
+"ingredients": ["rice","kidney bean","onion","tomato","cumin","olive oil","salt","pepper"],
+"instructions": "Sauté onion in 1 tbsp oil, add 1/2 tsp cumin, chopped tomato; cook 2–3 min. Stir in cooked kidney beans, salt/pepper. Serve over hot rice; drizzle oil."
+},
+{
+"name": "Veggie Fajitas",
+"ingredients": ["tortilla","bell pepper","onion","olive oil","cumin","salt","pepper"],
+"instructions": "Sear sliced peppers/onion in hot pan with 1 tbsp oil, 1/2 tsp cumin, salt/pepper until charred‑tender. Warm tortillas; fill and serve."
+},
+{
+"name": "Egg and Tomato Stir Fry",
+"ingredients": ["egg","tomato","onion","olive oil","salt","pepper"],
+"instructions": "Beat eggs with salt/pepper. Sauté onion 2 min, add chopped tomato 2–3 min. Pour eggs; scramble gently until just set."
+},
+{
+"name": "Peanut Noodle Salad",
+"ingredients": ["noodles","peanut butter","soy sauce","lemon","honey","cucumber","carrot"],
+"instructions": "Whisk 2 tbsp peanut butter, 1–1.5 tbsp soy, 1 tsp lemon, 1 tsp honey with a splash of warm water. Toss cooked noodles with thin carrot/cucumber and the sauce."
+},
+{
+"name": "Garlic Butter Corn",
+"ingredients": ["corn","butter","garlic","salt","pepper"],
+"instructions": "Melt 1 tbsp butter; sizzle 1 minced garlic clove 30 sec. Add 1.5 cups corn; cook 2–3 min. Salt/pepper to taste."
+},
+{
+"name": "Avocado Egg Sandwich",
+"ingredients": ["bread","avocado","egg","lemon","salt","pepper"],
+"instructions": "Mash avocado with lemon, salt/pepper. Scramble or fry eggs. Layer on toasted bread; close and serve."
+},
+{
+"name": "Chickpea Tuna Salad",
+"ingredients": ["chickpea","tuna","onion","lemon","olive oil","salt","pepper"],
+"instructions": "Combine drained tuna and cooked chickpea with finely chopped onion, 1 tbsp olive oil, 1 tsp lemon, salt/pepper."
+},
+{
+"name": "Peas Lemon Rice",
+"ingredients": ["rice","peas","lemon","olive oil","turmeric","salt"],
+"instructions": "Sauté 1/4 tsp turmeric in 1 tsp oil. Add 1 cup cooked rice, 1/2 cup peas, salt; toss. Finish with lemon juice."
+},
+{
+"name": "Garlic Spinach Rice",
+"ingredients": ["rice","spinach","garlic","olive oil","salt"],
+"instructions": "Sauté 1 minced garlic clove in 1 tsp oil, add 2 cups chopped spinach; wilt. Fold into 1 cup hot cooked rice; salt to taste."
+},
+{
+"name": "Potato Corn Sandwich",
+"ingredients": ["bread","potato","corn","butter","salt","pepper"],
+"instructions": "Mix mashed boiled potato with corn, salt/pepper. Spread between bread; butter outside and grill to golden."
+},
+{
+"name": "Paneer Stir Fry",
+"ingredients": ["paneer","bell pepper","onion","soy sauce","garlic","olive oil","salt"],
+"instructions": "Sear paneer cubes in 1 tsp oil; remove. Sauté peppers/onion with 1 minced garlic clove; splash soy. Return paneer; toss 1 min."
+},
+{
+"name": "Tofu Fried Rice",
+"ingredients": ["tofu","rice","onion","garlic","soy sauce","olive oil","salt","pepper"],
+"instructions": "Crisp tofu cubes in 1 tbsp oil; remove. Sauté onion/garlic; add cold rice and 1–1.5 tbsp soy; toss hot. Return tofu; pepper to taste."
+},
+{
+"name": "Mushroom Egg Toast",
+"ingredients": ["bread","egg","mushroom","butter","salt","pepper"],
+"instructions": "Sauté sliced mushrooms in butter 3–4 min; salt. Fry or scramble eggs. Pile mushrooms and eggs on toast."
+},
+{
+"name": "Basil Egg Toast",
+"ingredients": ["bread","egg","basil leaves","olive oil","garlic","salt","pepper"],
+"instructions": "Sizzle 1 chopped garlic clove in 1 tsp oil; add chopped basil for 10 sec. Scramble eggs in the fragrant oil; serve on toast."
+},
+{
+"name": "Chickpea Tomato Pasta",
+"ingredients": ["pasta","chickpea","tomato","garlic","olive oil","salt","pepper"],
+"instructions": "Sauté garlic in oil 30 sec; add crushed tomato, salt; simmer 6–8 min. Stir in chickpea 2 min. Toss with pasta."
+},
+{
+"name": "Spinach Corn Pasta",
+"ingredients": ["pasta","spinach","corn","garlic","olive oil","parmesan","salt","pepper"],
+"instructions": "Sauté garlic in oil; add corn 1 min, spinach until wilted. Toss with hot pasta, parmesan, salt/pepper."
+},
+{
+"name": "Chicken Tomato Sandwich",
+"ingredients": ["bread","chicken breast","tomato","lettuce","mayonnaise","pepper","salt"],
+"instructions": "Pan‑cook thin chicken with salt/pepper; slice. Layer bread with mayo, lettuce, tomato, chicken; close."
+},
+{
+"name": "Garlic Herb Chicken",
+"ingredients": ["chicken breast","garlic","olive oil","lemon","parsley","salt","pepper"],
+"instructions": "Marinate chicken with 1 tbsp oil, minced garlic, lemon juice, salt/pepper 10 min. Sear 4–6 min per side; rest and slice. Sprinkle parsley."
+},
+{
+"name": "Sesame Garlic Noodles",
+"ingredients": ["noodles","soy sauce","garlic","sesame oil","spring onion","pepper","salt"],
+"instructions": "Cook noodles. Heat 1 tsp oil; sizzle 1 minced garlic clove 20–30 sec. Toss noodles with 1–1.5 tbsp soy, 1 tsp sesame oil, pepper; top with chopped spring onion."
+},
+{
+"name": "Egg Rice Bowl",
+"ingredients": ["rice","egg","soy sauce","spring onion","olive oil","pepper","salt"],
+"instructions": "Fry eggs sunny‑side or scramble. Serve over hot rice with 1–2 tsp soy, pepper, and spring onion."
+},
+{
+"name": "Broccoli Cheese Soup",
+"ingredients": ["broccoli","onion","butter","milk","cheddar cheese","salt","pepper","vegetable broth"],
+"instructions": "Sauté onion in butter 3 min. Add 2 cups broccoli, 2 cups broth; simmer 8–10 min. Stir in 1 cup milk and 1 cup cheddar; melt. Season."
+},
+{
+"name": "Tomato Cheese Omelette",
+"ingredients": ["egg","tomato","cheese","olive oil","salt","pepper"],
+"instructions": "Cook chopped tomato 1 min in 1 tsp oil. Add beaten eggs; when nearly set, add cheese and fold."
+},
+{
+"name": "Chickpea Lettuce Wraps",
+"ingredients": ["lettuce","chickpea","onion","tomato","lemon","olive oil","salt","pepper"],
+"instructions": "Mash chickpea slightly with onion/tomato. Dress with 1 tbsp oil, 1 tsp lemon, salt/pepper. Spoon into lettuce leaves."
+},
+{
+"name": "Garlic Lemon Green Beans",
+"ingredients": ["green beans","garlic","olive oil","lemon","salt","pepper"],
+"instructions": "Sauté trimmed beans in 1 tbsp oil 4–5 min. Add 1 minced garlic clove 30 sec; finish with lemon, salt/pepper."
+},
+{
+"name": "Veggie Pasta Bake",
+"ingredients": ["pasta","tomato","mozzarella","olive oil","basil leaves","salt","pepper"],
+"instructions": "Mix cooked pasta with crushed tomato, 1 tbsp oil, salt/pepper. Top with mozzarella; bake at 200°C/400°F 12–15 min. Finish with basil."
+},
+{
+"name": "Spinach Egg Fried Rice",
+"ingredients": ["rice","egg","spinach","soy sauce","garlic","olive oil","salt","pepper"],
+"instructions": "Scramble eggs; remove. Sauté garlic and spinach 1–2 min. Add cold rice, 1–1.5 tbsp soy; toss hot. Return eggs."
+},
+{
+"name": "Yogurt Chicken Wrap",
+"ingredients": ["tortilla","chicken breast","yogurt","garlic","lemon","lettuce","onion","salt","pepper","olive oil"],
+"instructions": "Marinate strips with 2 tbsp yogurt, garlic, lemon, salt/pepper 10–15 min. Sear 5–6 min total. Wrap with lettuce/onion."
+},
+{
+"name": "Eggplant Tomato Pasta",
+"ingredients": ["pasta","eggplant","tomato","garlic","olive oil","basil leaves","salt"],
+"instructions": "Cube eggplant; sauté in 2 tbsp oil until tender/golden. Add garlic 30 sec, crushed tomato + salt; simmer 6–8 min. Toss with pasta and basil."
+},
+{
+"name": "Tomato Corn Salad",
+"ingredients": ["tomato","corn","onion","lemon","olive oil","salt","pepper"],
+"instructions": "Combine diced tomato, corn, and a little onion. Dress with 1 tbsp oil, 1 tsp lemon, salt/pepper."
+},
+{
+"name": "Garlic Chicken Quesadilla",
+"ingredients": ["tortilla","chicken breast","garlic","cheese","olive oil","salt","pepper"],
+"instructions": "Sear chicken with minced garlic, salt/pepper; slice thin. Fill tortilla with chicken and cheese; toast until melted."
+},
+{
+"name": "Mushroom Quesadilla",
+"ingredients": ["tortilla","mushroom","onion","cheese","olive oil","salt","pepper"],
+"instructions": "Sauté sliced mushroom/onion until browned; salt/pepper. Fill tortilla with mix and cheese; toast to golden."
+},
+{
+"name": "Paneer Fried Rice",
+"ingredients": ["paneer","rice","onion","garlic","peas","soy sauce","olive oil","salt"],
+"instructions": "Brown paneer cubes; remove. Sauté onion/garlic; add peas, cold rice, 1–1.5 tbsp soy; toss hot. Return paneer."
+},
+{
+"name": "Chickpea Pulao",
+"ingredients": ["rice","chickpea","onion","cumin","turmeric","olive oil","salt"],
+"instructions": "Sauté onion in 1 tbsp oil; add 1/2 tsp cumin, pinch turmeric. Stir in 1 cup rice, 1.75 cups water, 1/2 tsp salt, 1 cup chickpea. Simmer covered 12–14 min."
+},
+{
+"name": "Spicy Tomato Noodles",
+"ingredients": ["noodles","tomato","garlic","chili flakes","olive oil","salt"],
+"instructions": "Sauté garlic and chili flakes in 1 tbsp oil 30 sec; add crushed tomato + salt; simmer 5–6 min. Toss with cooked noodles."
+},
+{
+"name": "Veggie Breakfast Bowl",
+"ingredients": ["egg","potato","onion","bell pepper","olive oil","salt","pepper"],
+"instructions": "Pan‑roast diced potato with oil, salt/pepper until tender/crisp. Sauté onion/pepper 2–3 min; combine. Top with fried or scrambled eggs."
+},
+{
+"name": "Lemon Garlic Roasted Cauliflower Steaks",
+"ingredients": ["cauliflower","garlic","olive oil","lemon","salt","pepper"],
+"instructions": "Slice cauliflower into 2 cm steaks. Brush with oil, minced garlic, lemon, salt/pepper. Roast 220°C/425°F 20–25 min, flipping once."
+},
+{
+"name": "Veg Paella Rice",
+"ingredients": ["rice","bell pepper","onion","tomato","peas","garlic","paprika","olive oil","salt"],
+"instructions": "Rinse 1 cup rice; drain. Heat 1 tbsp olive oil (medium); sauté 1/2 cup chopped onion and 1 minced garlic clove 2–3 min. Add 1/2 cup diced bell pepper, 1/2 cup peas; cook 2 min. Stir in 1 tsp paprika, 1/2 tsp salt, 1 cup chopped tomato; cook 2–3 min. Add rice + 1 3/4 cups water; boil, then cover and simmer low 14–16 min. Rest 5 min; fluff."
+},
+{
+"name": "Lemon Butter Pasta",
+"ingredients": ["pasta","butter","lemon","garlic","salt","pepper"],
+"instructions": "Cook pasta al dente; reserve 1/2 cup water. Melt 2 tbsp butter in a pan (medium‑low); add 1 minced garlic clove 30 sec. Add zest + juice of 1/2 lemon and a splash of pasta water. Toss in pasta until glossy; salt/pepper to taste."
+},
+{
+"name": "Spinach Tomato Pasta Bake",
+"ingredients": ["pasta","spinach","tomato","mozzarella","olive oil","salt"],
+"instructions": "Cook pasta 1 min less than al dente; drain. Mix with 1 1/2 cups crushed tomato, 2 cups chopped spinach, 1 tbsp olive oil, 1/2 tsp salt. Top with mozzarella; bake 200°C/400°F for 12–15 min until bubbly."
+},
+{
+"name": "Eggplant Chickpea Masala",
+"ingredients": ["eggplant","chickpea","onion","tomato","garlic","ginger","cumin","turmeric","garam masala","olive oil","salt"],
+"instructions": "Sauté 1/2 cup onion in 1 tbsp oil 3–4 min. Add 1 tsp garlic, 1/2 tsp ginger; 30 sec. Stir in 1 tsp cumin, 1/2 tsp turmeric; 30 sec. Add 1 1/2 cups chopped eggplant; cook 5–6 min. Add 1 cup tomato, 1 cup chickpea, 1/2 tsp salt; simmer 6–8 min. Finish with 1/2 tsp garam masala."
+},
+{
+"name": "Roasted Tomato Basil Soup",
+"ingredients": ["tomato","onion","garlic","vegetable broth","basil leaves","olive oil","salt","pepper"],
+"instructions": "Roast 4 cups chopped tomato with 1 tbsp oil and a pinch of salt at 200°C/400°F for 15 min. Sauté 1/2 cup onion + 1 minced garlic clove 2 min; add tomatoes and 2 cups broth; simmer 8–10 min. Blend smooth; season; stir in torn basil."
+},
+{
+"name": "Tuna Corn Mayo Sandwich",
+"ingredients": ["bread","tuna","corn","mayonnaise","onion","lemon","pepper","salt"],
+"instructions": "Mix 1 can tuna (drained) with 1/3 cup corn, 2 tbsp finely chopped onion, 2–3 tbsp mayo, 1 tsp lemon, salt/pepper. Spread on bread; toast or serve as is."
+},
+{
+"name": "Classic Cheese Omelette",
+"ingredients": ["egg","cheese","butter","salt","pepper"],
+"instructions": "Beat 2–3 eggs with salt/pepper. Melt 1 tsp butter in a nonstick pan (medium‑low). Pour eggs; when mostly set, add 1/3 cup grated cheese; fold and cook 30–60 sec."
+},
+{
+"name": "Mushroom Rice Pilaf",
+"ingredients": ["rice","mushroom","onion","garlic","olive oil","salt","pepper"],
+"instructions": "Sauté 1/2 cup sliced mushroom in 1 tbsp oil (medium‑high) until browned. Add 1/4 cup onion + 1 minced garlic clove; 1 min. Stir in 1 cup rinsed rice, 1/2 tsp salt, 1 3/4 cups water; simmer covered 12–14 min. Rest 5 min; fluff."
+},
+{
+"name": "Big Veggie Burrito",
+"ingredients": ["tortilla","rice","kidney bean","lettuce","tomato","onion","cheese","olive oil","salt","pepper"],
+"instructions": "Warm tortilla. Fill with hot rice and warmed kidney beans. Add shredded lettuce, diced tomato/onion, and cheese. Season; roll tight and toast seam‑side down 1–2 min."
+},
+{
+"name": "Crisp Chickpea Patties",
+"ingredients": ["chickpea","onion","garlic","cumin","flour","olive oil","salt","pepper"],
+"instructions": "Mash 1 1/2 cups chickpea with 2 tbsp finely chopped onion, 1 minced garlic clove, 1/2 tsp cumin, 2–3 tbsp flour, 1/2 tsp salt, pepper. Form small patties; pan‑fry in 2 tbsp oil 3–4 min/side."
+},
+{
+"name": "Potato Latke Pancakes",
+"ingredients": ["potato","onion","egg","flour","olive oil","salt","pepper"],
+"instructions": "Grate 2 potatoes and 2 tbsp onion; squeeze dry. Mix with 1 egg, 2 tbsp flour, 1/2 tsp salt, pepper. Pan‑fry small scoops in 2–3 tbsp oil 3–4 min/side till crisp."
+},
+{
+"name": "Zucchini Pan Fritters",
+"ingredients": ["zucchini","onion","egg","flour","olive oil","salt","pepper"],
+"instructions": "Grate 1 medium zucchini; squeeze dry. Mix with 1 egg, 2 tbsp finely chopped onion, 2–3 tbsp flour, 1/4 tsp salt, pepper. Fry spoonfuls in 2 tbsp oil 2–3 min/side."
+},
+{
+"name": "Caprese Panini Melt",
+"ingredients": ["bread","tomato","mozzarella","basil leaves","olive oil","salt","pepper"],
+"instructions": "Layer tomato, mozzarella, and basil on bread; season. Brush outside with oil; grill in a pan or press until golden and melty."
+},
+{
+"name": "Lemon Pepper Chicken Skillet",
+"ingredients": ["chicken breast","lemon","garlic","olive oil","salt","pepper"],
+"instructions": "Season chicken with 1/4 tsp salt and plenty of pepper. Sear in 1 tbsp oil 4–5 min/side. Add 1 minced garlic clove and juice of 1/2 lemon; simmer 1–2 min. Rest and slice."
+},
+{
+"name": "Honey Roasted Carrots",
+"ingredients": ["carrot","honey","olive oil","salt","pepper"],
+"instructions": "Toss carrot batons with 1 tbsp oil, 1 tbsp honey, 1/2 tsp salt, pepper. Roast 200°C/400°F for 18–22 min until tender and caramelized."
+},
+{
+"name": "Chili Garlic Noodles",
+"ingredients": ["noodles","garlic","chili flakes","soy sauce","olive oil","salt"],
+"instructions": "Cook noodles; drain. Sizzle 2 minced garlic cloves and 1/2–1 tsp chili flakes in 1 tbsp oil 30 sec. Toss noodles with 1–1.5 tbsp soy; adjust salt."
+},
+{
+"name": "Soy Cucumber Salad",
+"ingredients": ["cucumber","soy sauce","lemon","olive oil"],
+"instructions": "Smash/slice cucumbers; pat dry. Dress with 1 tbsp soy, 1 tsp lemon, 1 tsp olive oil. Chill 10 min; serve."
+},
+{
+"name": "Simple Coleslaw Salad",
+"ingredients": ["cabbage","carrot","mayonnaise","lemon","salt","pepper"],
+"instructions": "Shred 2 cups cabbage and 1/2 cup carrot. Toss with 3 tbsp mayo, 1 tsp lemon, 1/4 tsp salt, pepper."
+},
+{
+"name": "Tomato Basil Couscous",
+"ingredients": ["couscous","tomato","olive oil","basil leaves","salt","pepper"],
+"instructions": "Pour 1 cup boiling water over 1 cup couscous + pinch salt; cover 7 min. Fluff; fold in diced tomato, chopped basil, 1 tbsp olive oil, salt/pepper."
+},
+{
+"name": "Chickpea Tomato Toasts",
+"ingredients": ["bread","chickpea","tomato","olive oil","garlic","salt","pepper"],
+"instructions": "Mash chickpea with 1 tbsp olive oil, pinch salt/pepper. Toast bread; rub lightly with cut garlic. Top with mash and diced tomato."
+},
+{
+"name": "Spinach Mushroom Quesadilla",
+"ingredients": ["tortilla","spinach","mushroom","cheese","olive oil","salt"],
+"instructions": "Sauté sliced mushrooms in 1 tsp oil; add 2 cups spinach to wilt; salt lightly. Fill tortilla with mix and cheese; toast both sides to golden."
+},
+{
+"name": "Broccoli Garlic Stir‑Fry",
+"ingredients": ["broccoli","garlic","soy sauce","olive oil","salt","pepper"],
+"instructions": "Sear broccoli florets in 1 tbsp oil 3–4 min (high). Add 2 minced garlic cloves; 30 sec. Splash 1 tbsp soy; toss 30 sec. Pepper to taste."
+},
+{
+"name": "Fried Egg Breakfast Sandwich",
+"ingredients": ["bread","egg","butter","cheese","salt","pepper"],
+"instructions": "Fry an egg in 1 tsp butter; salt/pepper. Toast bread with cheese to melt. Sandwich the egg; serve hot."
+},
+{
+"name": "Peanut Oat Energy Bites",
+"ingredients": ["oats","peanut butter","honey","cocoa powder","salt"],
+"instructions": "Mix 1 cup oats, 1/2 cup peanut butter, 2 tbsp honey, 1 tbsp cocoa, pinch salt. Chill 10 min; roll into bite‑size balls."
+},
+{
+"name": "2‑Ingredient Banana Oat Cookies",
+"ingredients": ["oats","banana","honey"],
+"instructions": "Mash 2 ripe bananas; mix with 1 1/2 cups oats and 1–2 tsp honey. Spoon onto tray; bake 175°C/350°F for 12–14 min."
+},
+{
+"name": "Yogurt Berry Bowl",
+"ingredients": ["yogurt","berries","honey","oats"],
+"instructions": "Top 1 cup yogurt with a handful of berries, 1–2 tsp honey, and 2 tbsp oats for crunch."
+},
+{
+"name": "Chili Lemon Pasta",
+"ingredients": ["pasta","garlic","chili flakes","lemon","olive oil","salt"],
+"instructions": "Cook pasta. Sizzle 1 minced garlic clove and 1/2–1 tsp chili flakes in 2 tbsp oil 30 sec. Toss in pasta with lemon juice; salt to taste."
+},
+{
+"name": "Rustic Minestrone Soup",
+"ingredients": ["vegetable broth","tomato","carrot","onion","garlic","pasta","kidney bean","olive oil","salt","pepper"],
+"instructions": "Sauté onion/carrot in 1 tbsp oil 3 min; add 1 minced garlic clove 30 sec. Add 3 cups broth, 1 cup chopped tomato, 1/2 cup small pasta, 1 cup kidney beans, 1/2 tsp salt. Simmer 10–12 min; pepper to taste."
+},
+{
+"name": "Chickpea Tikka Masala",
+"ingredients": ["chickpea","onion","tomato","garlic","ginger","garam masala","cumin","turmeric","olive oil","salt"],
+"instructions": "Sauté 1/2 cup onion in 1 tbsp oil 3–4 min. Add 1 tsp garlic, 1/2 tsp ginger; 30 sec. Stir in 1 tsp garam masala, 1/2 tsp cumin, 1/4 tsp turmeric; 30 sec. Add 1 1/2 cups tomato, 1 1/2 cups chickpea, 1/2 tsp salt; simmer 8–10 min."
+},
+{
+"name": "Paneer Tomato Masala",
+"ingredients": ["paneer","onion","tomato","garlic","ginger","turmeric","cumin","garam masala","olive oil","salt"],
+"instructions": "Brown paneer cubes in 1 tsp oil; remove. Sauté 1/2 cup onion 3 min; add 1 tsp garlic, 1/2 tsp ginger 30 sec. Add 1/4 tsp turmeric, 1/2 tsp cumin, 1/2 tsp salt; stir 30 sec. Add 1 cup tomato; simmer 5–6 min. Return paneer; finish with 1/2 tsp garam masala."
+},
+{
+"name": "Veg Stir‑Fry Noodles",
+"ingredients": ["noodles","bell pepper","onion","carrot","soy sauce","garlic","olive oil","salt"],
+"instructions": "Cook noodles; drain. Sear sliced pepper/onion/carrot in 1 tbsp oil 2–3 min (high). Add 1 minced garlic clove; 30 sec. Toss noodles with 1–2 tbsp soy; season."
+},
+{
+"name": "Potato Chickpea Curry",
+"ingredients": ["potato","chickpea","onion","tomato","garlic","ginger","turmeric","cumin","olive oil","salt"],
+"instructions": "Sauté 1/2 cup onion in 1 tbsp oil 3–4 min. Add 1 tsp garlic, 1/2 tsp ginger; 30 sec. Add 1/2 tsp cumin, 1/4 tsp turmeric; 30 sec. Add 2 cups diced potato, 1 cup tomato, 1 1/2 cups chickpea, 1/2 tsp salt; add 1 cup water; simmer 12–15 min until potatoes are tender."
+},
+{
+"name": "Spinach Corn Quesadilla",
+"ingredients": ["tortilla","spinach","corn","cheese","olive oil","salt"],
+"instructions": "Wilt 2 cups spinach in 1 tsp oil; salt lightly. Add 1/2 cup corn; 1 min. Fill tortilla with mix and cheese; toast both sides to golden."
+},
+{
+"name": "Eggplant Tomato Sandwich",
+"ingredients": ["bread","eggplant","tomato","olive oil","salt","pepper"],
+"instructions": "Pan‑roast thin eggplant slices in 1 tbsp oil until tender; salt/pepper. Layer with tomato on bread; toast to warm through."
+},
+{
+"name": "Garlic Herb Rice",
+"ingredients": ["rice","garlic","parsley","olive oil","salt"],
+"instructions": "Cook 1 cup rice. Sizzle 1 minced garlic clove in 1 tbsp olive oil 30–45 sec; fold into hot rice with 1–2 tbsp chopped parsley and 1/4 tsp salt."
+},
+{
+"name": "Lentil Tomato Stew",
+"ingredients": ["lentil","tomato","onion","garlic","vegetable broth","olive oil","salt","pepper"],
+"instructions": "Sauté 1/2 cup onion in 1 tbsp oil 3 min; add 1 minced garlic clove 30 sec. Add 1 cup lentils, 3 cups broth, 1 cup chopped tomato, 1/2 tsp salt; simmer 20–25 min until lentils are tender. Pepper to taste."
+},
+{
+"name": "Avocado Chickpea Salad",
+"ingredients": ["avocado","chickpea","onion","lemon","olive oil","salt","pepper"],
+"instructions": "Mash 1 ripe avocado with 1/2 tsp lemon and pinch salt. Fold in 1 cup chickpea and 2 tbsp finely chopped onion; pepper to taste."
+},
+{
+"name": "Garlic Shrimp Rice Bowl",
+"ingredients": ["shrimp","garlic","olive oil","rice","lemon","salt","pepper"],
+"instructions": "Sear shrimp in 1 tbsp oil with 1 minced garlic clove 1–2 min/side; salt/pepper. Serve over hot rice with a squeeze of lemon."
+},
+{
+"name": "Tomato Basil Scrambled Eggs",
+"ingredients": ["egg","tomato","basil leaves","olive oil","salt","pepper"],
+"instructions": "Sauté 1/2 cup chopped tomato in 1 tsp oil 1–2 min. Add beaten eggs; scramble softly. Finish with torn basil, salt/pepper."
+},
+{
+"name": "Lemon Garlic Roasted Zucchini",
+"ingredients": ["zucchini","garlic","olive oil","lemon","salt","pepper"],
+"instructions": "Toss sliced zucchini with 1 tbsp oil, 1 minced garlic clove, 1 tsp lemon juice, 1/4 tsp salt, pepper. Roast 220°C/425°F 10–12 min until tender."
+},
+  {
+    "name": "Black Bean Burgers",
+    "ingredients": ["black bean", "onion", "garlic", "bread", "cumin", "olive oil", "salt", "pepper"],
+    "instructions": "Mash beans with chopped onion, garlic, breadcrumbs, cumin, salt, and pepper. Form patties and pan-fry in oil until crisp on both sides."
+  },
+  {
+    "name": "Lemon Dill Salmon",
+    "ingredients": ["salmon", "lemon", "dill", "olive oil", "salt", "pepper"],
+    "instructions": "Place salmon on foil. Top with lemon slices, fresh dill, a drizzle of olive oil, salt, and pepper. Bake at 200°C/400°F for 12-15 min."
+  },
+  {
+    "name": "Coconut Curry Lentils",
+    "ingredients": ["lentil", "onion", "garlic", "coconut milk", "curry powder", "olive oil", "salt"],
+    "instructions": "Sauté onion and garlic in oil. Add curry powder, lentils, and coconut milk. Simmer for 20-25 min until lentils are tender; season with salt."
+  },
+  {
+    "name": "Baked Sweet Potato Fries",
+    "ingredients": ["sweet potato", "olive oil", "paprika", "garlic powder", "salt"],
+    "instructions": "Cut sweet potato into fries. Toss with oil, paprika, garlic powder, and salt. Bake at 220°C/425°F for 20-25 min, flipping once."
+  },
+  {
+    "name": "Miso Glazed Eggplant",
+    "ingredients": ["eggplant", "miso paste", "soy sauce", "honey", "olive oil"],
+    "instructions": "Whisk miso, soy sauce, and honey. Brush mixture over sliced eggplant. Roast at 200°C/400°F for 15-20 min until tender and caramelized."
+  },
+  {
+    "name": "Apple Cinnamon Oatmeal",
+    "ingredients": ["oats", "apple", "milk", "cinnamon", "honey"],
+    "instructions": "Cook oats with milk. Stir in chopped apple, a pinch of cinnamon, and a drizzle of honey before serving."
+  },
+  {
+    "name": "Simple Berry Smoothie",
+    "ingredients": ["berries", "banana", "yogurt", "milk", "honey"],
+    "instructions": "Blend a handful of mixed berries, half a banana, a scoop of yogurt, a splash of milk, and a little honey until smooth."
+  },
+  {
+    "name": "Veggie Lentil Shepherd's Pie",
+    "ingredients": ["lentil", "carrot", "onion", "peas", "vegetable broth", "potato", "butter", "milk", "salt", "pepper"],
+    "instructions": "Cook lentils with diced carrot, onion, and peas in broth. Top with mashed potatoes (potato, butter, milk, salt). Bake at 190°C/375°F for 15 min."
+  },
+  {
+    "name": "Creamy Mushroom Soup",
+    "ingredients": ["mushroom", "onion", "garlic", "butter", "flour", "vegetable broth", "milk", "salt", "pepper"],
+    "instructions": "Sauté mushrooms and onion in butter. Stir in garlic and flour. Gradually add broth and milk; simmer until thick. Blend and season."
+  },
+  {
+    "name": "Quinoa Salad with Lemon Vinaigrette",
+    "ingredients": ["quinoa", "cucumber", "tomato", "onion", "lemon", "olive oil", "salt", "pepper"],
+    "instructions": "Cook and cool quinoa. Toss with chopped cucumber, tomato, and onion. Dress with lemon juice, olive oil, salt, and pepper."
+  },
+  {
+    "name": "Garlic Parmesan Zucchini Noodles",
+    "ingredients": ["zucchini", "garlic", "parmesan", "olive oil", "salt", "pepper"],
+    "instructions": "Spiralize or julienne zucchini. Sauté minced garlic in oil for 30 sec. Add zucchini noodles, toss for 1-2 min. Remove from heat; add parmesan, salt, and pepper."
+  },
+  {
+    "name": "One-Pan Lemon Herb Chicken & Asparagus",
+    "ingredients": ["chicken breast", "asparagus", "lemon", "garlic", "olive oil", "salt", "pepper"],
+    "instructions": "Toss chicken and asparagus with oil, garlic, lemon juice, salt, pepper on a baking sheet. Bake at 200°C/400°F for 20-25 min."
+  },
+  {
+    "name": "Beef and Broccoli Stir-fry",
+    "ingredients": ["beef", "broccoli", "garlic", "soy sauce", "honey", "olive oil"],
+    "instructions": "Sear beef strips in a hot pan; remove. Stir-fry broccoli and garlic. Return beef, add soy sauce and a touch of honey; toss to combine."
+  },
+  {
+    "name": "Spinach and Feta Stuffed Chicken",
+    "ingredients": ["chicken breast", "spinach", "feta cheese", "garlic", "olive oil", "salt", "pepper"],
+    "instructions": "Sauté spinach with garlic; mix with feta. Cut a pocket in chicken breasts; stuff with mixture. Sear and bake at 190°C/375°F for 15-20 min."
+  },
+  {
+    "name": "Chocolate Avocado Mousse",
+    "ingredients": ["avocado", "cocoa powder", "honey", "milk", "salt"],
+    "instructions": "Blend a ripe avocado, cocoa powder, honey, a splash of milk, and a pinch of salt until perfectly smooth. Chill before serving."
+  },
+  {
+    "name": "Cauliflower Rice",
+    "ingredients": ["cauliflower", "olive oil", "onion", "garlic", "salt", "pepper"],
+    "instructions": "Grate cauliflower or pulse in a food processor. Sauté onion and garlic in oil; add cauliflower rice and cook for 3-5 min until tender. Season."
+  },
+  {
+    "name": "Black Bean and Corn Salsa",
+    "ingredients": ["black bean", "corn", "onion", "tomato", "lime", "cilantro", "salt"],
+    "instructions": "Combine canned black beans, corn, chopped onion, and tomato. Dress with lime juice, fresh cilantro, and salt."
+  },
+  {
+    "name": "Shrimp Scampi",
+    "ingredients": ["shrimp", "garlic", "butter", "lemon", "parsley", "salt", "pepper"],
+    "instructions": "Melt butter in a pan; sauté minced garlic for 30 sec. Add shrimp, cook 1-2 min per side. Squeeze lemon juice, add parsley, salt, and pepper."
+  },
+  {
+    "name": "Honey Garlic Glazed Salmon",
+    "ingredients": ["salmon", "honey", "soy sauce", "garlic", "olive oil"],
+    "instructions": "Mix honey, soy sauce, and minced garlic. Sear salmon in a pan with oil. Pour sauce over and cook for 2-3 min until glaze thickens."
+  },
+  {
+    "name": "Gnocchi with Sage Butter Sauce",
+    "ingredients": ["gnocchi", "butter", "sage", "parmesan", "salt", "pepper"],
+    "instructions": "Cook gnocchi per package. Melt butter in a pan, add fresh sage leaves and cook until crisp. Toss with gnocchi, parmesan, salt, and pepper."
+  },
+  {
+    "name": "Potato Leek Soup",
+    "ingredients": ["potato", "leek", "onion", "garlic", "vegetable broth", "butter", "salt", "pepper"],
+    "instructions": "Sauté chopped leeks and onion in butter. Add garlic, potato, and broth. Simmer until potatoes are soft. Blend until smooth and season."
+  },
+  {
+    "name": "White Bean Tuna Salad",
+    "ingredients": ["tuna", "white bean", "onion", "lemon", "olive oil", "parsley", "salt"],
+    "instructions": "Gently mix drained tuna, canned white beans, finely chopped onion, parsley, lemon juice, and olive oil. Season with salt."
+  },
+  {
+    "name": "Curried Chicken Salad",
+    "ingredients": ["chicken breast", "mayonnaise", "onion", "curry powder", "lemon", "salt"],
+    "instructions": "Mix cooked, shredded chicken with mayo, chopped onion, curry powder, a squeeze of lemon, and salt. Serve chilled."
+  },
+  {
+    "name": "Lentil Sloppy Joes",
+    "ingredients": ["lentil", "onion", "tomato", "chili powder", "cumin", "bread", "olive oil"],
+    "instructions": "Sauté onion, add spices, tomato sauce, and cooked lentils. Simmer for 10 min until thick. Serve on toasted buns."
+  },
+  {
+    "name": "Stuffed Bell Peppers",
+    "ingredients": ["bell pepper", "rice", "onion", "tomato", "garlic", "cheese", "olive oil", "salt"],
+    "instructions": "Sauté onion and garlic; mix with cooked rice, chopped tomato, and salt. Stuff into halved bell peppers, top with cheese. Bake at 190°C/375°F for 20 min."
+  },
+  {
+    "name": "Corn Chowder",
+    "ingredients": ["corn", "potato", "onion", "butter", "milk", "flour", "salt", "pepper"],
+    "instructions": "Sauté onion in butter. Stir in flour, then milk. Add diced potato and corn; simmer until potatoes are tender. Season."
+  },
+  {
+    "name": "Creamed Spinach",
+    "ingredients": ["spinach", "butter", "garlic", "milk", "parmesan", "salt", "pepper"],
+    "instructions": "Sauté garlic in butter. Add spinach and cook until wilted. Stir in a splash of milk and parmesan cheese until creamy. Season."
+  },
+  {
+    "name": "Baked Falafel",
+    "ingredients": ["chickpea", "onion", "garlic", "parsley", "cumin", "flour", "olive oil", "salt"],
+    "instructions": "Blend all ingredients (except oil). Form into small patties. Brush with oil and bake at 200°C/400°F for 20-25 min, flipping once."
+  },
+  {
+    "name": "Tabbouleh Salad",
+    "ingredients": ["parsley", "tomato", "onion", "lemon", "olive oil", "salt"],
+    "instructions": "Finely chop a large bunch of parsley. Mix with diced tomato, very finely chopped onion, lemon juice, olive oil, and salt."
+  },
+  {
+    "name": "Sausage and Kale Pasta",
+    "ingredients": ["pasta", "sausage", "kale", "garlic", "olive oil", "parmesan", "chili flakes"],
+    "instructions": "Cook sausage; remove. Sauté garlic and chili flakes, add kale and wilt. Toss with cooked pasta, sausage, and parmesan."
+  },
+  {
+    "name": "Simplified Chicken Parmesan",
+    "ingredients": ["chicken breast", "bread", "parmesan", "egg", "tomato", "mozzarella", "olive oil"],
+    "instructions": "Coat chicken in egg and breadcrumb/parmesan mix. Pan-fry until golden. Top with tomato sauce and mozzarella; bake until cheese melts."
+  },
+  {
+    "name": "Fish Tacos",
+    "ingredients": ["white fish", "tortilla", "cabbage", "lime", "mayonnaise", "chili powder", "olive oil"],
+    "instructions": "Season fish with chili powder; pan-sear and flake. Serve in tortillas with shredded cabbage and a drizzle of lime-mayo sauce."
+  },
+  {
+    "name": "Butternut Squash Soup",
+    "ingredients": ["butternut squash", "onion", "garlic", "vegetable broth", "olive oil", "salt", "pepper"],
+    "instructions": "Roast cubed squash until tender. Sauté onion and garlic, add squash and broth. Simmer for 10 min, then blend until smooth and season."
+  },
+  {
+    "name": "Simple Apple Crumble",
+    "ingredients": ["apple", "flour", "oats", "butter", "sugar", "cinnamon"],
+    "instructions": "Place sliced apples in a dish. Mix flour, oats, sugar, and cinnamon; rub in cold butter to make a crumble. Top apples and bake at 180°C/350°F for 30 min."
+  },
+  {
+    "name": "Onion Bhaji Fritters",
+    "ingredients": ["onion", "flour", "turmeric", "cumin", "olive oil", "salt"],
+    "instructions": "Thinly slice onions. Mix with flour, spices, salt, and a little water to form a thick batter. Fry spoonfuls in hot oil until golden and crisp."
+  },
+  {
+    "name": "3-Ingredient Peanut Butter Cookies",
+    "ingredients": ["peanut butter", "sugar", "egg"],
+    "instructions": "Mix 1 cup peanut butter, 1 cup sugar, and 1 egg. Roll into balls, press with a fork. Bake at 180°C/350°F for 10-12 minutes."
+  },
+  {
+    "name": "Cacio e Pepe",
+    "ingredients": ["pasta", "parmesan", "pepper", "salt"],
+    "instructions": "Cook pasta; reserve 1 cup of starchy water. Drain pasta. Toss vigorously with lots of black pepper, grated parmesan, and splashes of pasta water until a creamy sauce forms."
+  },
+  {
+    "name": "Shredded Chicken Tostadas",
+    "ingredients": ["tortilla", "chicken breast", "lettuce", "tomato", "cheese", "olive oil"],
+    "instructions": "Fry tortillas flat until crisp. Top with cooked shredded chicken, lettuce, tomato, and cheese."
+  },
+  {
+    "name": "Roasted Red Pepper Pasta",
+    "ingredients": ["pasta", "bell pepper", "garlic", "olive oil", "parmesan", "salt"],
+    "instructions": "Roast red bell peppers until charred; peel and blend with garlic, oil, and salt. Toss with hot pasta and parmesan."
+  },
+  {
+    "name": "Sautéed Swiss Chard",
+    "ingredients": ["swiss chard", "garlic", "olive oil", "lemon", "salt"],
+    "instructions": "Sauté chopped garlic in oil for 30 seconds. Add chopped swiss chard and cook until wilted. Finish with a squeeze of lemon and salt."
+  },
+  {
+    "name": "Watermelon Feta Salad",
+    "ingredients": ["watermelon", "feta cheese", "mint", "lime", "olive oil"],
+    "instructions": "Cube watermelon and gently toss with crumbled feta cheese and fresh mint leaves. Drizzle with a little olive oil and lime juice."
+  },
+  {
+    "name": "French Dip Sandwiches (Simple)",
+    "ingredients": ["beef", "onion", "vegetable broth", "bread", "butter"],
+    "instructions": "Slow cook beef until tender; shred. Sauté onions. Serve beef and onions on buttered, toasted bread with a side of the warm cooking broth for dipping."
+  },
+  {
+    "name": "Spicy Edamame",
+    "ingredients": ["edamame", "garlic", "chili flakes", "soy sauce", "olive oil"],
+    "instructions": "Steam edamame. Sauté garlic and chili flakes in oil for 30 sec. Toss with edamame and a splash of soy sauce."
+  },
+  {
+    "name": "Lemon Ricotta Pasta",
+    "ingredients": ["pasta", "ricotta cheese", "lemon", "parmesan", "salt", "pepper"],
+    "instructions": "Cook pasta; reserve 1/2 cup water. Whisk ricotta with lemon zest, juice, and parmesan. Toss with hot pasta, using pasta water to create a creamy sauce. Season."
+  },
+  {
+    "name": "Crispy Tofu Bites",
+    "ingredients": ["tofu", "cornstarch", "soy sauce", "garlic powder", "olive oil"],
+    "instructions": "Press tofu dry and cube it. Toss with cornstarch, soy sauce, and garlic powder. Pan-fry or bake at 200°C/400°F until golden and crisp."
+  },
+  {
+    "name": "Pork and Apple Skillet",
+    "ingredients": ["pork chop", "apple", "onion", "butter", "salt", "pepper"],
+    "instructions": "Sear pork chops; set aside. In the same pan, sauté sliced onion and apple in butter until soft. Return pork to pan to warm through."
+  },
+  {
+    "name": "Avocado and Corn Salad",
+    "ingredients": ["avocado", "corn", "onion", "lime", "cilantro", "salt"],
+    "instructions": "Gently combine diced avocado, corn, finely chopped onion, and cilantro. Dress with lime juice and salt."
+  },
+  {
+    "name": "Coconut Rice",
+    "ingredients": ["rice", "coconut milk", "water", "salt"],
+    "instructions": "Rinse rice. Cook with a mix of half coconut milk, half water (total liquid as per rice instructions) and a pinch of salt. Fluff before serving."
+  },
+  {
+    "name": "Tzatziki Sauce Dip",
+    "ingredients": ["yogurt", "cucumber", "garlic", "lemon", "dill", "salt"],
+    "instructions": "Grate cucumber and squeeze out excess water. Mix with yogurt, minced garlic, lemon juice, chopped dill, and salt. Chill for 30 minutes."
+  },
+  {
+    "name": "Caramelized Onion and Goat Cheese Tart",
+    "ingredients": ["onion", "butter", "sugar", "goat cheese", "tortilla", "salt"],
+    "instructions": "Slowly cook sliced onions in butter with a pinch of sugar and salt until deeply caramelized. Spread on a tortilla, crumble goat cheese on top, and bake until crisp."
+  }
+
+]
