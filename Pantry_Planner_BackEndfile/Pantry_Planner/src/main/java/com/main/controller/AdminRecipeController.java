@@ -1,254 +1,117 @@
-//package com.main.controller;
-//
-//import com.main.model.*;
-//import com.main.repository.*;
-//import org.springframework.http.*;
-//import org.springframework.web.bind.annotation.*;
-//
-//import java.time.LocalDateTime;
-//import java.util.*;
-//
-//@RestController
-//@RequestMapping("/api/admin/recipes")
-//public class AdminRecipeController {
-//
-//    private final RecipeSubmissionRepository submissionRepo;
-//    private final RecipeRepository recipeRepo;
-//    private final IngredientRepository ingredientRepo;
-//    private final RecipeIngredientRepository recipeIngredientRepo;
-//    private final UserRepository userRepo;
-//
-//    public AdminRecipeController(
-//            RecipeSubmissionRepository submissionRepo,
-//            RecipeRepository recipeRepo,
-//            IngredientRepository ingredientRepo,
-//            RecipeIngredientRepository recipeIngredientRepo,
-//            UserRepository userRepo
-//    ) {
-//        this.submissionRepo = submissionRepo;
-//        this.recipeRepo = recipeRepo;
-//        this.ingredientRepo = ingredientRepo;
-//        this.recipeIngredientRepo = recipeIngredientRepo;
-//        this.userRepo = userRepo;
-//    }
-//
-//    /** 🟢  Get all unapproved recipe submissions for admin review */
-//    @GetMapping("/pending")
-//    public List<RecipeSubmission> getPendingSubmissions() {
-//        return submissionRepo.findByApprovedFalse();
-//    }
-//
-//    /** 🟩  Approve a recipe submission and publish it as a Recipe */
-//    @PatchMapping("/{id}/approve")
-//    public ResponseEntity<Map<String, String>> approveRecipe(@PathVariable Long id) {
-//        Map<String, String> resp = new HashMap<>();
-//
-//        try {
-//            // 1️⃣  Find submission
-//            RecipeSubmission sub = submissionRepo.findById(id)
-//                    .orElseThrow(() ->
-//                            new RuntimeException("Submission not found (id=" + id + ")"));
-//
-//            // 2️⃣  Prevent re‑approval of same submission
-//            if (sub.isApproved()) {
-//                resp.put("message", "Already approved");
-//                return ResponseEntity.badRequest().body(resp);
-//            }
-//
-//            // 3️⃣  Construct new Recipe from submission
-//            Recipe recipe = new Recipe();
-//            recipe.setName(sub.getTitle());
-//            recipe.setInstructions(sub.getInstructions());
-//
-//            // 👇 set the recipe's owner to the submitting user (fixes user_id NOT NULL)
-//            recipe.setUser(sub.getSubmittedBy());
-//
-//            // 4️⃣  Link ingredients safely
-//            List<String> ingredientNames = parseIngredientList(sub.getIngredients());
-//            for (String name : ingredientNames) {
-//                if (name == null || name.trim().isEmpty()) continue;
-//                String lower = name.toLowerCase();
-//
-//                // find or create ingredient
-//                Ingredient ingredient = ingredientRepo.findByName(lower)
-//                        .orElseGet(() -> {
-//                            Ingredient i = new Ingredient();
-//                            i.setName(lower);
-//                            return ingredientRepo.save(i);
-//                        });
-//
-//                RecipeIngredient ri = new RecipeIngredient();
-//                ri.setIngredient(ingredient);
-//                recipe.addIngredient(ri);
-//            }
-//
-//            // 5️⃣  Save recipe and mark submission approved
-//            recipeRepo.save(recipe);
-//            sub.setApproved(true);
-//            sub.setApprovedAt(LocalDateTime.now());
-//            submissionRepo.save(sub);
-//
-//            resp.put("message", "✅ Recipe approved and published!");
-//            resp.put("title", recipe.getName());
-//            return ResponseEntity.ok(resp);
-//
-//        } catch (Exception e) {
-//            // 6️⃣  Log and return readable error JSON
-//            e.printStackTrace();
-//            resp.put("error", "Approval failed: " + e.getMessage());
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resp);
-//        }
-//    }
-//
-//    /** Helper to clean and trim the ingredients list */
-//    private List<String> parseIngredientList(List<String> ingredients) {
-//        if (ingredients == null) return Collections.emptyList();
-//        List<String> clean = new ArrayList<>();
-//        for (String ing : ingredients) {
-//            if (ing != null && !ing.trim().isEmpty()) {
-//                clean.add(ing.trim());
-//            }
-//        }
-//        return clean;
-//    }
-//}
-
-
 package com.main.controller;
 
-import com.main.model.*;
-import com.main.repository.*;
-import org.springframework.http.*;
-import org.springframework.web.bind.annotation.*;
+import com.main.exception.ResourceNotFoundException;
+import com.main.model.Ingredient;
+import com.main.model.Recipe;
+import com.main.model.RecipeIngredient;
+import com.main.model.RecipeSubmission;
+import com.main.repository.IngredientRepository;
+import com.main.repository.RecipeRepository;
+import com.main.repository.RecipeSubmissionRepository;
+import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/admin/recipes")
 public class AdminRecipeController {
 
-    private final RecipeSubmissionRepository submissionRepo;
-    private final RecipeRepository recipeRepo;
-    private final IngredientRepository ingredientRepo;
-    private final RecipeIngredientRepository recipeIngredientRepo;
-    private final UserRepository userRepo;
+    private final RecipeSubmissionRepository submissionRepository;
+    private final RecipeRepository recipeRepository;
+    private final IngredientRepository ingredientRepository;
 
     public AdminRecipeController(
-            RecipeSubmissionRepository submissionRepo,
-            RecipeRepository recipeRepo,
-            IngredientRepository ingredientRepo,
-            RecipeIngredientRepository recipeIngredientRepo,
-            UserRepository userRepo
-    ) {
-        this.submissionRepo = submissionRepo;
-        this.recipeRepo = recipeRepo;
-        this.ingredientRepo = ingredientRepo;
-        this.recipeIngredientRepo = recipeIngredientRepo;
-        this.userRepo = userRepo;
+            RecipeSubmissionRepository submissionRepository,
+            RecipeRepository recipeRepository,
+            IngredientRepository ingredientRepository) {
+        this.submissionRepository = submissionRepository;
+        this.recipeRepository = recipeRepository;
+        this.ingredientRepository = ingredientRepository;
     }
 
-    /** 🟢  Get all unapproved recipe submissions for owner/admin review */
     @GetMapping("/pending")
     public List<RecipeSubmission> getPendingSubmissions() {
-        return submissionRepo.findByApprovedFalseAndRejectedFalse();
+        return submissionRepository.findByApprovedFalseAndRejectedFalse();
     }
 
-    /** 🟩  Approve a recipe submission and publish it as a Recipe */
     @PatchMapping("/{id}/approve")
+    @Transactional
     public ResponseEntity<Map<String, String>> approveRecipe(@PathVariable Long id) {
-        Map<String, String> resp = new HashMap<>();
-        try {
-            RecipeSubmission sub = submissionRepo.findById(id)
-                    .orElseThrow(() -> new RuntimeException("Submission not found (id=" + id + ")"));
-
-            if (sub.isApproved()) {
-                resp.put("message", "Already approved");
-                return ResponseEntity.badRequest().body(resp);
-            }
-            if (sub.isRejected()) {
-                resp.put("message", "Cannot approve — already rejected");
-                return ResponseEntity.badRequest().body(resp);
-            }
-
-            // Construct new Recipe from submission
-            Recipe recipe = new Recipe();
-            recipe.setName(sub.getTitle());
-            recipe.setInstructions(sub.getInstructions());
-            recipe.setUser(sub.getSubmittedBy());
-
-            // Link ingredients
-            List<String> ingredientNames = parseIngredientList(sub.getIngredients());
-            for (String name : ingredientNames) {
-                if (name == null || name.trim().isEmpty()) continue;
-                String lower = name.toLowerCase();
-
-                Ingredient ingredient = ingredientRepo.findByName(lower)
-                        .orElseGet(() -> {
-                            Ingredient i = new Ingredient();
-                            i.setName(lower);
-                            return ingredientRepo.save(i);
-                        });
-
-                RecipeIngredient ri = new RecipeIngredient();
-                ri.setIngredient(ingredient);
-                recipe.addIngredient(ri);
-            }
-
-            recipeRepo.save(recipe);
-            sub.setApproved(true);
-            sub.setApprovedAt(LocalDateTime.now());
-            submissionRepo.save(sub);
-
-            resp.put("message", "✅ Recipe approved and published!");
-            resp.put("title", recipe.getName());
-            return ResponseEntity.ok(resp);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            resp.put("error", "Approval failed: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resp);
+        RecipeSubmission submission = getSubmission(id);
+        if (submission.isApproved()) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Recipe is already approved"));
         }
+        if (submission.isRejected()) {
+            return ResponseEntity.badRequest().body(Map.of("error", "A rejected recipe cannot be approved"));
+        }
+
+        Recipe recipe = new Recipe();
+        recipe.setName(submission.getTitle());
+        recipe.setInstructions(submission.getInstructions());
+        recipe.setUser(submission.getSubmittedBy());
+
+        for (String name : parseIngredientList(submission.getIngredients())) {
+            String normalizedName = name.toLowerCase(Locale.ROOT);
+            Ingredient ingredient = ingredientRepository.findByName(normalizedName)
+                    .orElseGet(() -> {
+                        Ingredient created = new Ingredient();
+                        created.setName(normalizedName);
+                        return ingredientRepository.save(created);
+                    });
+            RecipeIngredient recipeIngredient = new RecipeIngredient();
+            recipeIngredient.setIngredient(ingredient);
+            recipe.addIngredient(recipeIngredient);
+        }
+
+        recipeRepository.save(recipe);
+        submission.setApproved(true);
+        submission.setApprovedAt(LocalDateTime.now());
+        submissionRepository.save(submission);
+
+        return ResponseEntity.ok(Map.of(
+                "message", "Recipe approved and published",
+                "title", recipe.getName()));
     }
 
-    /** 🟥  Reject a recipe submission */
     @PatchMapping("/{id}/reject")
+    @Transactional
     public ResponseEntity<Map<String, String>> rejectRecipe(@PathVariable Long id) {
-        Map<String, String> resp = new HashMap<>();
-        try {
-            RecipeSubmission sub = submissionRepo.findById(id)
-                    .orElseThrow(() -> new RuntimeException("Submission not found (id=" + id + ")"));
-
-            if (sub.isApproved()) {
-                resp.put("message", "Cannot reject — already approved");
-                return ResponseEntity.badRequest().body(resp);
-            }
-            if (sub.isRejected()) {
-                resp.put("message", "Already rejected");
-                return ResponseEntity.badRequest().body(resp);
-            }
-
-            sub.setRejected(true);
-            sub.setRejectedAt(LocalDateTime.now()); // add this field to entity if not there
-            submissionRepo.save(sub);
-
-            resp.put("message", "❌ Recipe rejected and removed from pending list.");
-            return ResponseEntity.ok(resp);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            resp.put("error", "Rejection failed: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resp);
+        RecipeSubmission submission = getSubmission(id);
+        if (submission.isApproved()) {
+            return ResponseEntity.badRequest().body(Map.of("error", "An approved recipe cannot be rejected"));
         }
+        if (submission.isRejected()) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Recipe is already rejected"));
+        }
+
+        submission.setRejected(true);
+        submission.setRejectedAt(LocalDateTime.now());
+        submissionRepository.save(submission);
+        return ResponseEntity.ok(Map.of("message", "Recipe rejected"));
     }
 
-    /** Helper to clean and trim ingredients list */
+    private RecipeSubmission getSubmission(Long id) {
+        return submissionRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Recipe submission was not found"));
+    }
+
     private List<String> parseIngredientList(List<String> ingredients) {
         if (ingredients == null) return Collections.emptyList();
         List<String> clean = new ArrayList<>();
-        for (String ing : ingredients) {
-            if (ing != null && !ing.trim().isEmpty()) {
-                clean.add(ing.trim());
+        for (String ingredient : ingredients) {
+            if (ingredient != null && !ingredient.isBlank()) {
+                clean.add(ingredient.trim());
             }
         }
         return clean;

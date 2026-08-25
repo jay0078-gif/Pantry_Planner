@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../api";
+import { publicAsset, resolveImageUrl } from "../lib/images";
 
 export default function RecipeDetail() {
   const { id } = useParams();
@@ -53,7 +54,11 @@ export default function RecipeDetail() {
   if (error) return <div className="p-4 text-red-600">{error}</div>;
   if (!recipe) return <div className="p-4">Recipe not found.</div>;
 
-  const hero = recipe.imageUrl || "/images/food-fallback-wide.jpg";
+  const fallbackImage = publicAsset("images/food-fallback-wide.svg");
+  const hero = resolveImageUrl(
+    recipe.imageUrl,
+    "images/food-fallback-wide.svg"
+  );
 
   return (
     <div className="p-4 max-w-3xl mx-auto">
@@ -65,10 +70,10 @@ export default function RecipeDetail() {
           loading="lazy"
           onError={(e) => {
             if (
-              !e.currentTarget.src.endsWith("/images/food-fallback-wide.svg")
+              !e.currentTarget.src.endsWith(fallbackImage)
             ) {
               e.currentTarget.onerror = null;
-              e.currentTarget.src = "/images/food-fallback-wide.svg";
+              e.currentTarget.src = fallbackImage;
             }
           }}
         />

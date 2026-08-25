@@ -1,0 +1,10 @@
+.git
+.gitignore
+.idea
+.metadata
+.env
+.env.*
+!.env.example
+target
+uploads
+*.log

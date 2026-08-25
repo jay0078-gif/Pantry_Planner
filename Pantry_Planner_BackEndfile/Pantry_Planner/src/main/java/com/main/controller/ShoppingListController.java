@@ -2,20 +2,19 @@ package com.main.controller;
 
 import com.main.dto.PurchaseDTO;
 import com.main.dto.PurchaseRequest;
+import com.main.exception.ResourceNotFoundException;
 import com.main.model.*;
 import com.main.repository.*;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/shopping-list")
-@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 public class ShoppingListController {
 
     private final ShoppingListItemRepository repo;
@@ -39,8 +38,7 @@ public class ShoppingListController {
 
     /** 🟢 Get all active (not yet purchased) items for the logged‑in user */
     @GetMapping
-    public List<ShoppingListItem> list(@AuthenticationPrincipal UserDetails principal) {
-        if (principal == null) return Collections.emptyList();
+    public List<ShoppingListItem> list(Principal principal) {
         User user = getUser(principal);
         return repo.findByUserAndPurchasedFalse(user);
     }
@@ -48,13 +46,11 @@ public class ShoppingListController {
     /** 🟢 Add all ingredients from a recipe that this user doesn't yet have */
     @PostMapping("/from-recipe/{recipeId}")
     public List<ShoppingListItem> fromRecipe(@PathVariable Long recipeId,
-                                             @AuthenticationPrincipal UserDetails principal) {
-
-        if (principal == null) return Collections.emptyList();
+                                             Principal principal) {
         User user = getUser(principal);
 
         Recipe recipe = recipeRepo.findById(recipeId)
-                .orElseThrow(() -> new RuntimeException("Recipe not found: " + recipeId));
+                .orElseThrow(() -> new ResourceNotFoundException("Recipe was not found"));
 
         // Collect ingredient IDs already covered by pantry or shopping list
         Set<Long> pantryIngIds = pantryRepo.findByUser(user).stream()
@@ -91,8 +87,7 @@ public class ShoppingListController {
     /** 🟢 Delete an item that belongs to the current user */
     @DeleteMapping("/{id}")
     public ResponseEntity<?> remove(@PathVariable Long id,
-                                    @AuthenticationPrincipal UserDetails principal) {
-        if (principal == null) return ResponseEntity.badRequest().build();
+                                    Principal principal) {
         User user = getUser(principal);
 
         return repo.findById(id)
@@ -108,14 +103,12 @@ public class ShoppingListController {
     @PostMapping("/{id}/purchase")
     public PurchaseDTO purchase(@PathVariable Long id,
                                 @RequestBody(required = false) PurchaseRequest req,
-                                @AuthenticationPrincipal UserDetails principal) {
-
-        if (principal == null) throw new RuntimeException("User not logged in");
+                                Principal principal) {
         User user = getUser(principal);
 
         ShoppingListItem sli = repo.findById(id)
                 .filter(it -> it.getUser().equals(user))
-                .orElseThrow(() -> new RuntimeException("Item not found or not owned by user"));
+                .orElseThrow(() -> new ResourceNotFoundException("Shopping list item was not found"));
 
         // Add or update pantry entry
         PantryItem pantryItem = pantryRepo.findByUserAndIngredientId(user, sli.getIngredient().getId())
@@ -152,8 +145,8 @@ public class ShoppingListController {
     }
 
     /** Helper: resolve User entity for current principal */
-    private User getUser(UserDetails principal) {
-        return userRepo.findByUsername(principal.getUsername())
-                .orElseThrow(() -> new RuntimeException("User not found: " + principal.getUsername()));
+    private User getUser(Principal principal) {
+        return userRepo.findByUsername(principal.getName())
+                .orElseThrow(() -> new ResourceNotFoundException("Authenticated user was not found"));
     }
 }

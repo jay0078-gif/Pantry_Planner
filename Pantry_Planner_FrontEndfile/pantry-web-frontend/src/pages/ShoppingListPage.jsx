@@ -71,7 +71,7 @@ export default function ShoppingListPage() {
     <div className="min-h-screen bg-slate-50 flex flex-col items-center p-6">
       <div className="max-w-4xl w-full bg-white rounded-lg shadow border border-slate-200 p-6">
         <header className="mb-5 flex items-center justify-between">
-          <h1 className="text-2xl font-semibold text-slate-800">Shopping List</h1>
+          <h1 className="text-2xl font-semibold text-slate-800">Shopping List</h1>
           <span className="text-sm text-slate-500">
             {list.length} {list.length === 1 ? "item" : "items"}
           </span>
@@ -111,7 +111,7 @@ export default function ShoppingListPage() {
                         className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-1.5
                                    rounded-md text-sm transition"
                       >
-                        ✅ Buy now
+                        ✅ Buy now
                       </button>
                       <button
                         onClick={() => removeItem(it.id)}

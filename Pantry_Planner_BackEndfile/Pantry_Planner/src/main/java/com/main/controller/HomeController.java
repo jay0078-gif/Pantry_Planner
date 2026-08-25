@@ -8,6 +8,6 @@ public class HomeController {
 
     @GetMapping("/")
     public String home() {
-        return "Backend is running ✅ — try /login or /api/auth/current.";
+        return "Pantry Planner API is running.";
     }
 }

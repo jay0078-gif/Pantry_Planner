@@ -1,79 +1,17 @@
-//package com.main.model;
-//
-//import jakarta.persistence.*;
-//import java.time.LocalDateTime;
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//@Entity
-//@Table(name = "recipe_submission")
-//public class RecipeSubmission {
-//
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
-//
-//    private String title;
-//
-//    @Column(length = 5000)
-//    private String instructions;
-//
-//    @ElementCollection(fetch = FetchType.EAGER)
-//    @CollectionTable(
-//            name = "recipe_submission_ingredients",
-//            joinColumns = @JoinColumn(name = "submission_id"))
-//    @Column(name = "ingredient")
-//    private List<String> ingredients = new ArrayList<>();
-//
-//    private boolean approved = false;
-//
-//    @Column(updatable = false)
-//    private LocalDateTime createdAt = LocalDateTime.now();
-//
-//    private LocalDateTime approvedAt;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "submitted_by_id")
-//    private User submittedBy;
-//
-//    // 🆕 Optional: record who approved for traceability
-//    @ManyToOne
-//    @JoinColumn(name = "approved_by_id")
-//    private User approvedBy;
-//
-//    // ---------- getters & setters ----------
-//    public Long getId() { return id; }
-//    public void setId(Long id) { this.id = id; }
-//
-//    public String getTitle() { return title; }
-//    public void setTitle(String title) { this.title = title; }
-//
-//    public String getInstructions() { return instructions; }
-//    public void setInstructions(String instructions) { this.instructions = instructions; }
-//
-//    public List<String> getIngredients() { return ingredients; }
-//    public void setIngredients(List<String> ingredients) { this.ingredients = ingredients; }
-//
-//    public boolean isApproved() { return approved; }
-//    public void setApproved(boolean approved) { this.approved = approved; }
-//
-//    public LocalDateTime getCreatedAt() { return createdAt; }
-//    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
-//
-//    public LocalDateTime getApprovedAt() { return approvedAt; }
-//    public void setApprovedAt(LocalDateTime approvedAt) { this.approvedAt = approvedAt; }
-//
-//    public User getSubmittedBy() { return submittedBy; }
-//    public void setSubmittedBy(User submittedBy) { this.submittedBy = submittedBy; }
-//
-//    public User getApprovedBy() { return approvedBy; }
-//    public void setApprovedBy(User approvedBy) { this.approvedBy = approvedBy; }
-//}
-
-
 package com.main.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -86,81 +24,128 @@ public class RecipeSubmission {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, length = 200)
     private String title;
 
-    @Column(length = 5000)
+    @Column(nullable = false, length = 5000)
     private String instructions;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(
             name = "recipe_submission_ingredients",
             joinColumns = @JoinColumn(name = "submission_id"))
-    @Column(name = "ingredient")
+    @Column(name = "ingredient", nullable = false, length = 100)
     private List<String> ingredients = new ArrayList<>();
 
-    /* ---------- Status Flags ---------- */
-    private boolean approved = false;
-    private boolean rejected = false;
+    @Column(nullable = false)
+    private boolean approved;
 
-    /* ---------- Timestamps ---------- */
-    @Column(updatable = false)
+    @Column(nullable = false)
+    private boolean rejected;
+
+    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
     private LocalDateTime approvedAt;
     private LocalDateTime rejectedAt;
 
-    /* ---------- Relationships ---------- */
-
-    // the user who submitted
-    @ManyToOne
-    @JoinColumn(name = "submitted_by_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "submitted_by_id", nullable = false)
     private User submittedBy;
 
-    // user who approved (owner / admin)
     @ManyToOne
     @JoinColumn(name = "approved_by_id")
     private User approvedBy;
 
-    // user who rejected (owner / admin)
     @ManyToOne
     @JoinColumn(name = "rejected_by_id")
     private User rejectedBy;
 
-    /* ---------- Getters & Setters ---------- */
+    public Long getId() {
+        return id;
+    }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public String getTitle() {
+        return title;
+    }
 
-    public String getTitle() { return title; }
-    public void setTitle(String title) { this.title = title; }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-    public String getInstructions() { return instructions; }
-    public void setInstructions(String instructions) { this.instructions = instructions; }
+    public String getInstructions() {
+        return instructions;
+    }
 
-    public List<String> getIngredients() { return ingredients; }
-    public void setIngredients(List<String> ingredients) { this.ingredients = ingredients; }
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
+    }
 
-    public boolean isApproved() { return approved; }
-    public void setApproved(boolean approved) { this.approved = approved; }
+    public List<String> getIngredients() {
+        return ingredients;
+    }
 
-    public boolean isRejected() { return rejected; }
-    public void setRejected(boolean rejected) { this.rejected = rejected; }
+    public void setIngredients(List<String> ingredients) {
+        this.ingredients = ingredients;
+    }
 
-    public LocalDateTime getCreatedAt() { return createdAt; }
-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+    public boolean isApproved() {
+        return approved;
+    }
 
-    public LocalDateTime getApprovedAt() { return approvedAt; }
-    public void setApprovedAt(LocalDateTime approvedAt) { this.approvedAt = approvedAt; }
+    public void setApproved(boolean approved) {
+        this.approved = approved;
+    }
 
-    public LocalDateTime getRejectedAt() { return rejectedAt; }
-    public void setRejectedAt(LocalDateTime rejectedAt) { this.rejectedAt = rejectedAt; }
+    public boolean isRejected() {
+        return rejected;
+    }
 
-    public User getSubmittedBy() { return submittedBy; }
-    public void setSubmittedBy(User submittedBy) { this.submittedBy = submittedBy; }
+    public void setRejected(boolean rejected) {
+        this.rejected = rejected;
+    }
 
-    public User getApprovedBy() { return approvedBy; }
-    public void setApprovedBy(User approvedBy) { this.approvedBy = approvedBy; }
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
 
-    public User getRejectedBy() { return rejectedBy; }
-    public void setRejectedBy(User rejectedBy) { this.rejectedBy = rejectedBy; }
+    public LocalDateTime getApprovedAt() {
+        return approvedAt;
+    }
+
+    public void setApprovedAt(LocalDateTime approvedAt) {
+        this.approvedAt = approvedAt;
+    }
+
+    public LocalDateTime getRejectedAt() {
+        return rejectedAt;
+    }
+
+    public void setRejectedAt(LocalDateTime rejectedAt) {
+        this.rejectedAt = rejectedAt;
+    }
+
+    public User getSubmittedBy() {
+        return submittedBy;
+    }
+
+    public void setSubmittedBy(User submittedBy) {
+        this.submittedBy = submittedBy;
+    }
+
+    public User getApprovedBy() {
+        return approvedBy;
+    }
+
+    public void setApprovedBy(User approvedBy) {
+        this.approvedBy = approvedBy;
+    }
+
+    public User getRejectedBy() {
+        return rejectedBy;
+    }
+
+    public void setRejectedBy(User rejectedBy) {
+        this.rejectedBy = rejectedBy;
+    }
 }

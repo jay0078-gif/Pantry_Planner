@@ -1,3 +1,26 @@
+import { backendBaseUrl } from "../api";
+
+export function publicAsset(path) {
+return `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
+}
+
+export function resolveImageUrl(
+  imageUrl,
+  fallbackAsset = "images/food-fallback.svg"
+) {
+  const fallback = publicAsset(fallbackAsset);
+  const value = imageUrl?.trim();
+
+  if (!value || /^\/?images\/food-fallback(?:-wide)?\.[a-z0-9]+$/i.test(value)) {
+    return fallback;
+  }
+
+  if (/^(?:https?:|data:|blob:)/i.test(value)) return value;
+  if (!backendBaseUrl) return fallback;
+
+  return `${backendBaseUrl}/${value.replace(/^\/+/, "")}`;
+}
+
 export function pickTags(name = "") {
 const n = name.toLowerCase();
 const map = [
@@ -24,7 +47,7 @@ const map = [
 { match: ["eggplant","aubergine"], tags: ["eggplant","mediterranean"] },
 ];
 for (const r of map) if (r.match.some(k => n.includes(k))) return r.tags;
-return ["home-cooked","food"]; // default
+return ["home-cooked","food"];
 }
 
 export function placeholder(name, w = 640, h = 400) {
@@ -33,6 +56,6 @@ return `https://picsum.photos/seed/${seed}/${w}/${h}`;
 }
 
 export function recipeImage(name, imageUrl, w = 640, h = 400) {
-if (imageUrl && imageUrl.trim()) return imageUrl;
+if (imageUrl && imageUrl.trim()) return resolveImageUrl(imageUrl);
 return placeholder(name, w, h);
 }

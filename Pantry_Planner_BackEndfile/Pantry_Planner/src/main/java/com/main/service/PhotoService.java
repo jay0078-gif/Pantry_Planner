@@ -9,12 +9,9 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.io.IOException;
 import java.net.URI;
-import java.nio.file.*;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -45,8 +42,8 @@ public class PhotoService {
     this.pexelsApiKey = pexelsApiKey == null ? "" : pexelsApiKey.trim();
 
     this.http = builder
-        .setConnectTimeout(Duration.ofSeconds(4))
-        .setReadTimeout(Duration.ofSeconds(6))
+        .connectTimeout(Duration.ofSeconds(4))
+        .readTimeout(Duration.ofSeconds(6))
         .build();
 
     List<Pattern> patterns = new ArrayList<>();
@@ -121,7 +118,7 @@ public class PhotoService {
   private String searchPexels(String query) {
     try {
       URI uri = UriComponentsBuilder
-          .fromHttpUrl("https://api.pexels.com/v1/search")
+          .fromUriString("https://api.pexels.com/v1/search")
           .queryParam("query", query)
           .queryParam("per_page", 1)
           .queryParam("orientation", "landscape")
@@ -148,29 +145,6 @@ public class PhotoService {
       return null;
     }
   }
-
-  // -------------------------------------------------------------
-  //  NEW METHOD — used by AdminPhotoController
-  // -------------------------------------------------------------
-  public String uploadPhoto(MultipartFile file) {
-    if (file == null || file.isEmpty()) {
-      throw new IllegalArgumentException("No file provided");
-    }
-    try {
-      String uploadDir = "uploads/";
-      Files.createDirectories(Path.of(uploadDir));
-
-      String filename = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-      Path dest = Path.of(uploadDir, filename);
-      Files.copy(file.getInputStream(), dest, StandardCopyOption.REPLACE_EXISTING);
-
-      log.info("Saved uploaded photo: {}", dest.toAbsolutePath());
-      return "/uploads/" + filename; // return relative path or public URL
-    } catch (IOException e) {
-      throw new RuntimeException("Failed to save uploaded photo", e);
-    }
-  }
-  // -------------------------------------------------------------
 
   private static String firstNotBlank(String... v) {
     if (v == null) return null;

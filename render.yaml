@@ -1,0 +1,48 @@
+services:
+  - type: web
+    name: pantry-planner-api
+    runtime: docker
+    plan: free
+    region: singapore
+    branch: main
+    rootDir: Pantry_Planner_BackEndfile/Pantry_Planner
+    dockerfilePath: Pantry_Planner_BackEndfile/Pantry_Planner/Dockerfile
+    dockerContext: Pantry_Planner_BackEndfile/Pantry_Planner
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_USERNAME
+        sync: false
+      - key: DATABASE_PASSWORD
+        sync: false
+      - key: SEED_OWNER_PASSWORD
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_ISSUER
+        value: pantry-planner
+      - key: JWT_AUDIENCE
+        value: pantry-planner-web
+      - key: JWT_TTL
+        value: PT30M
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://jay0078-gif.github.io
+      - key: HIBERNATE_DDL_AUTO
+        value: update
+      - key: DATABASE_CONNECTION_TIMEOUT_MS
+        value: "4000"
+      - key: DATABASE_VALIDATION_TIMEOUT_MS
+        value: "3000"
+      - key: APP_LOG_LEVEL
+        value: INFO
+      - key: DEBUG
+        value: "false"
+      - key: SPRING_JPA_SHOW_SQL
+        value: "false"
+      - key: SERVER_ERROR_INCLUDE_MESSAGE
+        value: never
+      - key: SERVER_ERROR_INCLUDE_STACKTRACE
+        value: never
+      - key: PHOTOS_BACKFILL_ON_START
+        value: "false"

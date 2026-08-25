@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import api from "../api";
 import RecipeCard from "../components/RecipeCard";
 
@@ -11,7 +11,7 @@ export default function SuggestionsPage() {
   // -----------------------------------------------------------------
   // 🔹 Fetch recipe suggestions from backend
   // -----------------------------------------------------------------
-  const loadSuggestions = async () => {
+  const loadSuggestions = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -33,14 +33,14 @@ export default function SuggestionsPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [maxMissing]);
 
   // -----------------------------------------------------------------
   // 🔸 Reload whenever maxMissing changes
   // -----------------------------------------------------------------
   useEffect(() => {
     loadSuggestions();
-  }, [maxMissing]);
+  }, [loadSuggestions]);
 
   // -----------------------------------------------------------------
   // 🖼 Render

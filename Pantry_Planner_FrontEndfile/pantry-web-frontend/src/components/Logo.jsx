@@ -1,4 +1,5 @@
-// src/components/Logo.jsx
+import { publicAsset } from "../lib/images";
+
 export default function Logo({
   size = 46,
   label = "Pantry Planner",
@@ -11,7 +12,7 @@ export default function Logo({
         className="flex items-center justify-center rounded-full bg-white shadow-md ring-1 ring-[#e6e6e6]"
       >
         <img
-          src="/logo.svg"
+          src={publicAsset("logo.svg")}
           alt="Pantry Planner logo"
           className="object-contain w-[75%] h-[75%]"
         />

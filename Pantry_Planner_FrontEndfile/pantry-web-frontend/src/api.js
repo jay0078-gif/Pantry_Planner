@@ -1,67 +1,93 @@
 import axios from "axios";
 
+const configuredBackendUrl = import.meta.env.VITE_API_BASE_URL?.trim();
+const authTokenKey = "pantryPlanner.authToken";
 
-const base =
-  (import.meta.env.VITE_API_BASE_URL?.replace(/\/+$/, "") ||
-    "http://localhost:8080") + "/api";
+export const authExpiredEvent = "pantryPlanner:authExpired";
+
+export const backendBaseUrl = (
+  configuredBackendUrl || (import.meta.env.DEV ? "http://localhost:8080" : "")
+).replace(/\/+$/, "");
+
+export const isBackendConfigured = Boolean(backendBaseUrl);
+
+export function backendUrl(path = "") {
+  if (!isBackendConfigured) return "";
+  const normalizedPath = path.replace(/^\/+/, "");
+  return normalizedPath ? `${backendBaseUrl}/${normalizedPath}` : backendBaseUrl;
+}
+
+export function hasAuthToken() {
+  return Boolean(sessionStorage.getItem(authTokenKey));
+}
+
+export function clearAuthToken() {
+  sessionStorage.removeItem(authTokenKey);
+}
 
 const api = axios.create({
-  baseURL: base,           // ⇒ http://localhost:8080/api
-  withCredentials: true,   // ⬅️ required: send/receive JSESSIONID cookie
+  baseURL: isBackendConfigured ? backendUrl("api") : "/api",
   headers: { "Content-Type": "application/json" },
-  timeout: 10000,
+  timeout: 90000,
 });
 
-// ---------------------------------------------------------------------------
-// 🧩 Environment‑based request logging (development only)
-// ---------------------------------------------------------------------------
+api.interceptors.request.use((config) => {
+  const token = sessionStorage.getItem(authTokenKey);
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401 && error.config?.url !== "/auth/login") {
+      clearAuthToken();
+      window.dispatchEvent(new Event(authExpiredEvent));
+    }
+    return Promise.reject(error);
+  }
+);
+
 if (import.meta.env.DEV) {
   api.interceptors.request.use((config) => {
     console.log(
-      `➡️  ${config.method?.toUpperCase()} ${config.baseURL}${config.url}`,
-      { params: config.params || null, data: config.data || null }
+      `${config.method?.toUpperCase()} ${config.baseURL}${config.url}`,
+      { params: config.params || null }
     );
     return config;
   });
 
   api.interceptors.response.use(
-    (res) => {
-      console.log("⬅️  Response:", res.status, res.data);
-      return res;
+    (response) => {
+      console.log("Response:", response.status);
+      return response;
     },
-    (err) => {
-      if (err.response)
-        console.error("❌  API Error:", err.response.status, err.response.data);
-      else console.error("❌  API Error:", err.message);
-      return Promise.reject(err);
+    (error) => {
+      if (error.response) {
+        console.error("API error:", error.response.status, error.response.data);
+      } else {
+        console.error("API error:", error.message);
+      }
+      return Promise.reject(error);
     }
   );
 }
 
-
 export async function login(username, password) {
-  const form = new URLSearchParams();
-  form.append("username", username);
-  form.append("password", password);
-
-  // Important: override header for form data
-  return api.post("/auth/login", form, {
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-  });
+  const response = await api.post("/auth/login", { username, password });
+  sessionStorage.setItem(authTokenKey, response.data.token);
+  return response.data;
 }
 
-/**
- * Logout current user — invalidates JSESSIONID on the server
- */
-export async function logout() {
-  return api.post("/auth/logout");
+export function logout() {
+  clearAuthToken();
 }
 
-/**
- * Fetch currently authenticated user info.
- */
 export async function currentUser() {
-  return api.get("/auth/me");
+  const response = await api.get("/auth/current");
+  return response.data;
 }
 
 export default api;

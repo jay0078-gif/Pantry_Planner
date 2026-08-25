@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Logo from "./Logo";
 
 const linkCls = ({ isActive }) =>
@@ -10,13 +10,8 @@ const linkCls = ({ isActive }) =>
    }`;
 
 export default function TopNav({ role, onLogout }) {
-  const navigate = useNavigate();
-
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    sessionStorage.clear();
-    if (onLogout) onLogout();
-    else navigate("/login");
+    onLogout();
   };
 
   return (
@@ -56,11 +51,6 @@ export default function TopNav({ role, onLogout }) {
             {role === "ROLE_USER" && (
               <NavLink to="/submit-recipe" className={linkCls}>
                 Submit
-              </NavLink>
-            )}
-            {role === "ROLE_OWNER" && (
-              <NavLink to="/review-recipes" className={linkCls}>
-                Review
               </NavLink>
             )}
             {role === "ROLE_ADMIN" && (

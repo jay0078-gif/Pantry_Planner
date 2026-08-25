@@ -1,100 +1,128 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import api, { logout as apiLogout } from "./api";
-
+import { Navigate, Route, Routes } from "react-router-dom";
+import {
+  authExpiredEvent,
+  currentUser,
+  hasAuthToken,
+  isBackendConfigured,
+  logout,
+} from "./api";
 import TopNav from "./components/TopNav";
-
-// Main pages
-import SuggestionsPage from "./pages/SuggestionsPage";
+import LoginPage from "./pages/LoginPage";
 import PantryPage from "./pages/PantryPage";
-import RecipesPage from "./pages/RecipesPage";
-import RecipeDetail from "./pages/RecipeDetail";
-import ShoppingListPage from "./pages/ShoppingListPage";
 import ReceiptPage from "./pages/ReceiptPage";
-
-// Role‑specific pages
-import SubmitRecipePage from "./pages/SubmitRecipePage";
+import RecipeDetail from "./pages/RecipeDetail";
+import RecipesPage from "./pages/RecipesPage";
 import ReviewRecipesPage from "./pages/ReviewRecipesPage";
+import ShoppingListPage from "./pages/ShoppingListPage";
+import SubmitRecipePage from "./pages/SubmitRecipePage";
+import SuggestionsPage from "./pages/SuggestionsPage";
+
+function normalizeRole(role) {
+  const value = Array.isArray(role) ? role[0] : role;
+  if (!value) return null;
+  return value.startsWith("ROLE_") ? value : `ROLE_${value}`;
+}
+
+function connectionError(error) {
+  if (error.code === "ECONNABORTED") {
+    return "The free API took too long to wake up. Please try again.";
+  }
+  if (!error.response) {
+    return "The free API is unavailable right now. Please try again in a minute.";
+  }
+  if (error.response.status === 401) {
+    return "Your sign-in expired. Please log in again.";
+  }
+  return "I could not verify your sign-in. Please try again.";
+}
 
 export default function App() {
   const [role, setRole] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [authError, setAuthError] = useState(null);
+  const [authError, setAuthError] = useState("");
 
-  // ------------------------------------------------------------------
-  // 🔹 Fetch current authenticated user
-  // ------------------------------------------------------------------
   useEffect(() => {
-    const fetchCurrentUser = async () => {
-      try {
-        const res = await api.get("/auth/current");
-        console.log("🧠 User role from backend:", res.data.role);
-
-        // Normalize whatever backend sends into a single string
-        let currentRole = res.data.role;
-        if (Array.isArray(currentRole)) currentRole = currentRole[0];
-        if (currentRole && !currentRole.startsWith("ROLE_")) {
-          currentRole = "ROLE_" + currentRole;
-        }
-        setRole(currentRole);
-      } catch (err) {
-        console.error("❌  GET /auth/current failed:", err);
-        setAuthError("Not logged in or session expired.");
-      } finally {
-        setLoading(false);
-      }
+    const handleExpiredAuth = () => {
+      setRole(null);
+      setAuthError("Your sign-in expired. Please log in again.");
     };
-
-    fetchCurrentUser();
+    window.addEventListener(authExpiredEvent, handleExpiredAuth);
+    return () => window.removeEventListener(authExpiredEvent, handleExpiredAuth);
   }, []);
 
-  // ------------------------------------------------------------------
-  // 🔸 Loading & unauthenticated states
-  // ------------------------------------------------------------------
+  useEffect(() => {
+    let active = true;
+
+    async function restoreSession() {
+      if (!isBackendConfigured) {
+        setAuthError("The backend API is not configured for this deployment.");
+        setLoading(false);
+        return;
+      }
+      if (!hasAuthToken()) {
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const user = await currentUser();
+        if (active) {
+          setRole(normalizeRole(user.role));
+          setAuthError("");
+        }
+      } catch (error) {
+        if (active) setAuthError(connectionError(error));
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+
+    restoreSession();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const handleLogin = (user) => {
+    setRole(normalizeRole(user.role));
+    setAuthError("");
+  };
+
+  const handleLogout = () => {
+    logout();
+    setRole(null);
+    setAuthError("");
+  };
+
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-screen text-lg font-medium">
-        Loading…
+      <div className="flex min-h-screen items-center justify-center px-6 text-center">
+        <div>
+          <p className="text-lg font-semibold text-slate-800">
+            Connecting to Pantry Planner
+          </p>
+          <p className="mt-2 max-w-md text-sm text-slate-600">
+            The free API can take about a minute to wake after it has been idle.
+          </p>
+        </div>
       </div>
     );
   }
 
   if (!role) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen text-center">
-        <h2 className="text-2xl font-semibold mb-2">Please log in</h2>
-        <p className="text-red-600 mb-4">{authError}</p>
-        <a
-          href="http://localhost:8080/login"
-          className="text-green-700 underline font-medium"
-        >
-          Open login page
-        </a>
-      </div>
+      <LoginPage
+        backendConfigured={isBackendConfigured}
+        initialError={authError}
+        onLogin={handleLogin}
+      />
     );
   }
 
-  // ------------------------------------------------------------------
-  // 🔹 Logout handler
-  // ------------------------------------------------------------------
-  const handleLogout = async () => {
-    try {
-      await apiLogout();
-    } catch (e) {
-      console.warn("Logout request failed:", e);
-    } finally {
-      localStorage.removeItem("token");
-      window.location.href = "http://localhost:8080/login";
-    }
-  };
-
-  // ------------------------------------------------------------------
-  // 🌍 Render authenticated area
-  // ------------------------------------------------------------------
   return (
     <>
       <TopNav role={role} onLogout={handleLogout} />
-
       <Routes>
         <Route path="/" element={<SuggestionsPage />} />
         <Route path="/pantry" element={<PantryPage />} />
@@ -102,15 +130,12 @@ export default function App() {
         <Route path="/recipes/:id" element={<RecipeDetail />} />
         <Route path="/shopping-list" element={<ShoppingListPage />} />
         <Route path="/receipt/:id" element={<ReceiptPage />} />
-
-        {/* Role‑specific routes */}
         {role === "ROLE_USER" && (
           <Route path="/submit-recipe" element={<SubmitRecipePage />} />
         )}
-        {["ROLE_OWNER", "ROLE_ADMIN"].includes(role) && (
+        {role === "ROLE_ADMIN" && (
           <Route path="/review-recipes" element={<ReviewRecipesPage />} />
         )}
-
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </>

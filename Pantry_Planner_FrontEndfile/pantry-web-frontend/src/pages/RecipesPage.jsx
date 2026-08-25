@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
+import { publicAsset, resolveImageUrl } from "../lib/images";
 
 export default function RecipesPage() {
   const [recipes, setRecipes] = useState([]);
@@ -8,6 +9,7 @@ export default function RecipesPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const fallbackImage = publicAsset("images/food-fallback.svg");
 
   // ------------------------------------------------------------------
   // 🔹 Fetch all or filtered recipes
@@ -111,17 +113,15 @@ export default function RecipesPage() {
                                shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-200"
                   >
                     {/* Image */}
-                    {r.imageUrl ? (
-                      <img
-                        src={r.imageUrl}
-                        alt={r.name}
-                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    ) : (
-                      <div className="w-full h-48 bg-slate-100 flex items-center justify-center text-slate-400 italic">
-                        No image
-                      </div>
-                    )}
+                    <img
+                      src={resolveImageUrl(r.imageUrl)}
+                      alt={r.name}
+                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                      onError={(event) => {
+                        event.currentTarget.onerror = null;
+                        event.currentTarget.src = fallbackImage;
+                      }}
+                    />
 
                     {/* Content */}
                     <div className="p-4">

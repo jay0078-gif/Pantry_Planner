@@ -1,6 +1,7 @@
 package com.main.controller;
 
 import com.main.dto.PantryUpsertRequest;
+import com.main.exception.ResourceNotFoundException;
 import com.main.model.Ingredient;
 import com.main.model.PantryItem;
 import com.main.model.User;
@@ -8,11 +9,9 @@ import com.main.repository.PantryItemRepository;
 import com.main.repository.UserRepository;
 import com.main.service.IngredientService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -35,24 +34,17 @@ public class PantryController {
 
     /** 🟢 Get all pantry items for the logged‑in user */
     @GetMapping
-    public List<PantryItem> list(@AuthenticationPrincipal UserDetails principal) {
-        if (principal == null) return Collections.emptyList();
-
-        return userRepo.findByUsername(principal.getUsername())
-                       .map(repo::findByUser)                 // ✅ now uses entity
-                       .orElse(Collections.emptyList());
+    public List<PantryItem> list(Principal principal) {
+        return repo.findByUser(getUser(principal));
     }
 
     /** 🟢 Add new ingredient or update existing one for the logged‑in user */
     @PostMapping
     public ResponseEntity<PantryItem> add(
-            @AuthenticationPrincipal UserDetails principal,
+            Principal principal,
             @RequestBody PantryUpsertRequest req
     ) {
-        if (principal == null) return ResponseEntity.badRequest().build();
-
-        User user = userRepo.findByUsername(principal.getUsername())
-                .orElseThrow(() -> new RuntimeException("User not found: " + principal.getUsername()));
+        User user = getUser(principal);
 
         Ingredient ing = ingredientService.findOrCreate(req.ingredientName());
 
@@ -77,12 +69,9 @@ public class PantryController {
     public ResponseEntity<PantryItem> update(
             @PathVariable Long id,
             @RequestBody PantryUpsertRequest req,
-            @AuthenticationPrincipal UserDetails principal
+            Principal principal
     ) {
-        if (principal == null) return ResponseEntity.badRequest().build();
-
-        User user = userRepo.findByUsername(principal.getUsername())
-                .orElseThrow(() -> new RuntimeException("User not found: " + principal.getUsername()));
+        User user = getUser(principal);
 
         PantryItem item = repo.findById(id)
                 .filter(i -> i.getUser().equals(user))     // ✅ don’t allow editing others’ items
@@ -100,12 +89,9 @@ public class PantryController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(
             @PathVariable Long id,
-            @AuthenticationPrincipal UserDetails principal
+            Principal principal
     ) {
-        if (principal == null) return ResponseEntity.badRequest().build();
-
-        User user = userRepo.findByUsername(principal.getUsername())
-                .orElseThrow(() -> new RuntimeException("User not found: " + principal.getUsername()));
+        User user = getUser(principal);
 
         PantryItem item = repo.findById(id)
                 .filter(i -> i.getUser().equals(user))     // ✅ delete only your own
@@ -114,5 +100,10 @@ public class PantryController {
 
         repo.delete(item);
         return ResponseEntity.noContent().build();
+    }
+
+    private User getUser(Principal principal) {
+        return userRepo.findByUsername(principal.getName())
+                .orElseThrow(() -> new ResourceNotFoundException("Authenticated user was not found"));
     }
 }

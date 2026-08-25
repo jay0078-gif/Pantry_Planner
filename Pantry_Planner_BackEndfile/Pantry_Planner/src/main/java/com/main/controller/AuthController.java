@@ -1,60 +1,106 @@
 package com.main.controller;
 
-import com.main.model.User;
+import com.main.dto.AuthResponse;
+import com.main.dto.CurrentUserResponse;
+import com.main.dto.LoginRequest;
+import com.main.dto.RegisterRequest;
 import com.main.model.Role;
+import com.main.model.User;
 import com.main.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.main.service.JwtService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
+import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
+    private final JwtService jwtService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    public AuthController(
+            UserRepository userRepository,
+            PasswordEncoder passwordEncoder,
+            AuthenticationManager authenticationManager,
+            JwtService jwtService) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.authenticationManager = authenticationManager;
+        this.jwtService = jwtService;
+    }
 
-    // ✅ Register a normal user
+    @PostMapping("/login")
+    public AuthResponse login(@Valid @RequestBody LoginRequest request) {
+        validatePasswordLength(request.password());
+        Authentication authentication = authenticationManager.authenticate(
+                UsernamePasswordAuthenticationToken.unauthenticated(
+                        normalizeUsername(request.username()), request.password()));
+        return jwtService.issue(authentication);
+    }
+
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody User user) {
-        if (userRepository.findByUsername(user.getUsername()).isPresent()) {
-            return ResponseEntity.badRequest().body("Username already exists");
-        }
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole(Role.ROLE_USER);
-        userRepository.save(user);
-        return ResponseEntity.ok("User registered successfully");
+    public ResponseEntity<Map<String, String>> register(@Valid @RequestBody RegisterRequest request) {
+        return registerUser(request, Role.ROLE_USER, "User registered successfully");
     }
 
-    // ✅ Optional: Register an admin/owner manually
     @PostMapping("/register-admin")
-    public ResponseEntity<?> registerAdmin(@RequestBody User user) {
-        if (userRepository.findByUsername(user.getUsername()).isPresent()) {
-            return ResponseEntity.badRequest().body("Username already exists");
-        }
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole(Role.ROLE_ADMIN);
-        userRepository.save(user);
-        return ResponseEntity.ok("Admin registered successfully");
+    public ResponseEntity<Map<String, String>> registerAdmin(@Valid @RequestBody RegisterRequest request) {
+        return registerUser(request, Role.ROLE_ADMIN, "Admin registered successfully");
     }
 
-    // ✅ Endpoint used by frontend to check who is logged in
     @GetMapping("/current")
-    public ResponseEntity<Map<String, String>> currentUser(Authentication auth) {
-        if (auth == null) {
-            return ResponseEntity.status(401).body(null);
+    public CurrentUserResponse currentUser(Authentication authentication) {
+        String role = authentication.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .filter(authority -> authority.startsWith("ROLE_"))
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException("Authenticated user has no application role"));
+        return new CurrentUserResponse(authentication.getName(), role);
+    }
+
+    private ResponseEntity<Map<String, String>> registerUser(
+            RegisterRequest request, Role role, String successMessage) {
+        validatePasswordLength(request.password());
+        String username = normalizeUsername(request.username());
+        if (userRepository.findByUsername(username).isPresent()) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(Map.of("error", "Username already exists"));
         }
-        Map<String, String> info = new HashMap<>();
-        info.put("username", auth.getName());
-        info.put("role", auth.getAuthorities().iterator().next().getAuthority());
-        return ResponseEntity.ok(info);
+
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(passwordEncoder.encode(request.password()));
+        user.setRole(role);
+        userRepository.save(user);
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(Map.of("message", successMessage));
+    }
+
+    private static String normalizeUsername(String username) {
+        return username.trim().toLowerCase(Locale.ROOT);
+    }
+
+    private static void validatePasswordLength(String password) {
+        if (password.getBytes(StandardCharsets.UTF_8).length > 72) {
+            throw new IllegalArgumentException("Password exceeds the supported length");
+        }
     }
 }

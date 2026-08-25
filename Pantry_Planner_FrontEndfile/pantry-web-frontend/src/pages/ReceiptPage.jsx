@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import api from "../api";
+import { publicAsset, resolveImageUrl } from "../lib/images";
 
 export default function RecipesPage() {
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const fallbackImage = publicAsset("images/food-fallback.svg");
 
   // ------------------------------------------------------------------
   // 🔹 Fetch all or filtered recipes from backend
@@ -16,7 +18,7 @@ export default function RecipesPage() {
       setError(null);
 
       // ✅  Always call the *real* backend endpoint
-      const res = await api.get("/api/recipes", {
+      const res = await api.get("/recipes", {
         params: { search: term },
       });
 
@@ -66,7 +68,6 @@ export default function RecipesPage() {
     <div className="p-4">
       <h1 className="text-2xl font-semibold mb-4">Recipes</h1>
 
-      {/* 🔍 Search Bar -------------------------------------------------- */}
       <div className="flex items-center gap-2 mb-4">
         <input
           type="text"
@@ -84,11 +85,9 @@ export default function RecipesPage() {
         </button>
       </div>
 
-      {/* ⚠ Error & Loading States ------------------------------------ */}
       {error && <div className="text-red-600 mb-2">{error}</div>}
       {loading && <div className="text-slate-600">Loading recipes…</div>}
 
-      {/* 📜 Result List ---------------------------------------------- */}
       {!loading && !error && (
         <div>
           {recipes.length === 0 ? (
@@ -116,9 +115,13 @@ export default function RecipesPage() {
 
                   {r.imageUrl && (
                     <img
-                      src={r.imageUrl}
+                      src={resolveImageUrl(r.imageUrl)}
                       alt={r.name}
                       className="mt-2 rounded-md max-h-48 object-cover"
+                      onError={(event) => {
+                        event.currentTarget.onerror = null;
+                        event.currentTarget.src = fallbackImage;
+                      }}
                     />
                   )}
                 </li>
