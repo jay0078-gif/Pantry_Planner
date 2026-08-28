@@ -6,8 +6,8 @@ services:
     region: singapore
     branch: main
     rootDir: Pantry_Planner_BackEndfile/Pantry_Planner
-    dockerfilePath: Pantry_Planner_BackEndfile/Pantry_Planner/Dockerfile
-    dockerContext: Pantry_Planner_BackEndfile/Pantry_Planner
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
     healthCheckPath: /actuator/health
     envVars:
       - key: DATABASE_URL
