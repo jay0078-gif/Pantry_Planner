@@ -21,8 +21,11 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.sql.DataSource;
+import java.sql.ResultSet;
 import java.time.Clock;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -60,8 +63,26 @@ class PantryPlannerApplicationTests {
     @Autowired
     private Clock clock;
 
+    @Autowired
+    private DataSource dataSource;
+
     @Test
     void contextLoads() {
+    }
+
+    @Test
+    void recipeSubmissionIngredientsTableHasAPrimaryKey() throws Exception {
+        List<String> primaryKeyColumns = new ArrayList<>();
+        try (var connection = dataSource.getConnection();
+             ResultSet keys = connection.getMetaData().getPrimaryKeys(
+                     null, null, "recipe_submission_ingredients")) {
+            while (keys.next()) {
+                primaryKeyColumns.add(keys.getString("COLUMN_NAME"));
+            }
+        }
+
+        assertThat(primaryKeyColumns)
+                .containsExactlyInAnyOrder("submission_id", "ingredient_position");
     }
 
     @Test

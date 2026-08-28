@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OrderColumn;
 import jakarta.persistence.Table;
 
 import java.time.LocalDateTime;
@@ -34,6 +35,7 @@ public class RecipeSubmission {
     @CollectionTable(
             name = "recipe_submission_ingredients",
             joinColumns = @JoinColumn(name = "submission_id"))
+    @OrderColumn(name = "ingredient_position")
     @Column(name = "ingredient", nullable = false, length = 100)
     private List<String> ingredients = new ArrayList<>();
 
