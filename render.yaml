@@ -31,9 +31,9 @@ services:
       - key: HIBERNATE_DDL_AUTO
         value: update
       - key: DATABASE_CONNECTION_TIMEOUT_MS
-        value: "4000"
+        value: "30000"
       - key: DATABASE_VALIDATION_TIMEOUT_MS
-        value: "3000"
+        value: "5000"
       - key: APP_LOG_LEVEL
         value: INFO
       - key: DEBUG
