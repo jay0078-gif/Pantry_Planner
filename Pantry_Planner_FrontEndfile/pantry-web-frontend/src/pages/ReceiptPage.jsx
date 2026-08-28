@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import api from "../api";
-import { publicAsset, resolveImageUrl } from "../lib/images";
+import { recipeCover, recipeImage } from "../lib/images";
 
 export default function RecipesPage() {
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const fallbackImage = publicAsset("images/food-fallback.svg");
 
   // ------------------------------------------------------------------
   // 🔹 Fetch all or filtered recipes from backend
@@ -113,17 +112,17 @@ export default function RecipesPage() {
                     </div>
                   )}
 
-                  {r.imageUrl && (
-                    <img
-                      src={resolveImageUrl(r.imageUrl)}
-                      alt={r.name}
-                      className="mt-2 rounded-md max-h-48 object-cover"
-                      onError={(event) => {
-                        event.currentTarget.onerror = null;
-                        event.currentTarget.src = fallbackImage;
-                      }}
-                    />
-                  )}
+                  <img
+                    src={recipeImage(r.name, r.imageUrl)}
+                    alt={r.name}
+                    className="mt-2 h-48 w-full rounded-md object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    onError={(event) => {
+                      event.currentTarget.onerror = null;
+                      event.currentTarget.src = recipeCover(r.name);
+                    }}
+                  />
                 </li>
               ))}
             </ul>

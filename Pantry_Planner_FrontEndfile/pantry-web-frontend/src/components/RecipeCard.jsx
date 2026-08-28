@@ -1,11 +1,11 @@
 import Card from "./Card";
 import { Link } from "react-router-dom";
-import { publicAsset, resolveImageUrl } from "../lib/images";
+import { recipeCover, recipeImage } from "../lib/images";
 
 export default function RecipeCard({ s }) {
 const pct = s.totalIngredients ? Math.round((s.matched / s.totalIngredients) * 100) : 0;
-const fallbackImage = publicAsset("images/food-fallback.svg");
-const img = resolveImageUrl(s.imageUrl);
+const fallbackImage = recipeCover(s.name);
+const img = recipeImage(s.name, s.imageUrl);
 
 return (
 <Card>
@@ -15,6 +15,7 @@ return (
   alt={s.name}
   className="w-full h-full object-cover"
   loading="lazy"
+  decoding="async"
   onError={(e) => {
     if (!e.currentTarget.src.endsWith(fallbackImage)) {
       e.currentTarget.onerror = null;

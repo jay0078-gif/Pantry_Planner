@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.main.model.Role;
 import com.main.model.User;
+import com.main.repository.RecipeRepository;
 import com.main.repository.RecipeSubmissionRepository;
 import com.main.repository.UserRepository;
 import org.junit.jupiter.api.Test;
@@ -55,6 +56,9 @@ class PantryPlannerApplicationTests {
     private RecipeSubmissionRepository recipeSubmissionRepository;
 
     @Autowired
+    private RecipeRepository recipeRepository;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
@@ -83,6 +87,17 @@ class PantryPlannerApplicationTests {
 
         assertThat(primaryKeyColumns)
                 .containsExactlyInAnyOrder("submission_id", "ingredient_position");
+    }
+
+    @Test
+    void seededRecipesDoNotPersistBrokenImageUrls() {
+        assertThat(recipeRepository.findAll())
+                .hasSize(250)
+                .noneMatch(recipe -> {
+                    String imageUrl = recipe.getImageUrl();
+                    return imageUrl != null
+                            && (imageUrl.contains("source.unsplash.com") || imageUrl.contains("/.../"));
+                });
     }
 
     @Test
