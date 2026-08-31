@@ -2,11 +2,12 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { register } from "../api";
 import Logo from "../components/Logo";
+import { USERNAME_PATTERN } from "../lib/authValidation";
 
 function signUpError(error) {
   if (error.code === "ECONNABORTED") {
     return {
-      message: "The free API took too long to wake up. Please try again.",
+      message: "The request timed out. Your account may already be ready, so try logging in with these details before signing up again.",
       field: null,
     };
   }
@@ -105,7 +106,7 @@ export default function SignUpPage({ backendConfigured }) {
               aria-describedby={error ? "signup-error" : undefined}
               minLength={3}
               maxLength={50}
-              pattern="[A-Za-z0-9._-]+"
+              pattern={USERNAME_PATTERN}
               title="Use letters, numbers, dots, dashes, or underscores."
               required
             />
