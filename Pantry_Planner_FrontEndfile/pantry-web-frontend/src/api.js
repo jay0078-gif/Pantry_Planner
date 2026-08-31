@@ -31,6 +31,12 @@ const api = axios.create({
   timeout: 90000,
 });
 
+const authApi = axios.create({
+  baseURL: isBackendConfigured ? backendUrl("api") : "/api",
+  headers: { "Content-Type": "application/json" },
+  timeout: 90000,
+});
+
 api.interceptors.request.use((config) => {
   const token = sessionStorage.getItem(authTokenKey);
   if (token) {
@@ -42,7 +48,15 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401 && error.config?.url !== "/auth/login") {
+    const currentToken = sessionStorage.getItem(authTokenKey);
+    const requestAuthorization =
+      error.config?.headers?.get?.("Authorization") ??
+      error.config?.headers?.Authorization;
+    if (
+      error.response?.status === 401 &&
+      currentToken &&
+      requestAuthorization === `Bearer ${currentToken}`
+    ) {
       clearAuthToken();
       window.dispatchEvent(new Event(authExpiredEvent));
     }
@@ -76,8 +90,13 @@ if (import.meta.env.DEV) {
 }
 
 export async function login(username, password) {
-  const response = await api.post("/auth/login", { username, password });
+  const response = await authApi.post("/auth/login", { username, password });
   sessionStorage.setItem(authTokenKey, response.data.token);
+  return response.data;
+}
+
+export async function register(username, password) {
+  const response = await authApi.post("/auth/register", { username, password });
   return response.data;
 }
 

@@ -17,6 +17,8 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     /** Partial match on recipe name (case-insensitive). */
     List<Recipe> findByNameContainingIgnoreCase(String name);
 
+    List<Recipe> findAllByOrderByIdAsc();
+
     /**
      * Search by recipe name OR any ingredient name (case-insensitive).
      */

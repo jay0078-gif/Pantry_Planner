@@ -7,7 +7,9 @@ import com.main.dto.RegisterRequest;
 import com.main.model.Role;
 import com.main.model.User;
 import com.main.repository.UserRepository;
+import com.main.service.AuthRateLimiter;
 import com.main.service.JwtService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,29 +36,39 @@ public class AuthController {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
+    private final AuthRateLimiter authRateLimiter;
 
     public AuthController(
             UserRepository userRepository,
             PasswordEncoder passwordEncoder,
             AuthenticationManager authenticationManager,
-            JwtService jwtService) {
+            JwtService jwtService,
+            AuthRateLimiter authRateLimiter) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
         this.jwtService = jwtService;
+        this.authRateLimiter = authRateLimiter;
     }
 
     @PostMapping("/login")
-    public AuthResponse login(@Valid @RequestBody LoginRequest request) {
+    public AuthResponse login(
+            @Valid @RequestBody LoginRequest request,
+            HttpServletRequest httpRequest) {
+        String username = normalizeUsername(request.username());
+        authRateLimiter.checkLogin(httpRequest);
         validatePasswordLength(request.password());
         Authentication authentication = authenticationManager.authenticate(
                 UsernamePasswordAuthenticationToken.unauthenticated(
-                        normalizeUsername(request.username()), request.password()));
+                        username, request.password()));
         return jwtService.issue(authentication);
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Map<String, String>> register(@Valid @RequestBody RegisterRequest request) {
+    public ResponseEntity<Map<String, String>> register(
+            @Valid @RequestBody RegisterRequest request,
+            HttpServletRequest httpRequest) {
+        authRateLimiter.checkRegistration(httpRequest);
         return registerUser(request, Role.ROLE_USER, "User registered successfully");
     }
 

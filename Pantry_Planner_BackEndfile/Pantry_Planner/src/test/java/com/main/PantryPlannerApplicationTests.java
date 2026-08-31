@@ -1,9 +1,11 @@
 package com.main;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.main.model.Purchase;
 import com.main.model.Role;
 import com.main.model.User;
+import com.main.repository.IngredientRepository;
+import com.main.repository.PurchaseRepository;
 import com.main.repository.RecipeRepository;
 import com.main.repository.RecipeSubmissionRepository;
 import com.main.repository.UserRepository;
@@ -23,6 +25,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.time.Clock;
 import java.time.Instant;
@@ -57,6 +60,12 @@ class PantryPlannerApplicationTests {
 
     @Autowired
     private RecipeRepository recipeRepository;
+
+    @Autowired
+    private IngredientRepository ingredientRepository;
+
+    @Autowired
+    private PurchaseRepository purchaseRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -108,7 +117,13 @@ class PantryPlannerApplicationTests {
         String ownerPasswordHash = owner.getPassword();
 
         mockMvc.perform(post("/api/auth/register")
-                        .header("Authorization", "Bearer " + loginToken("owner", "test-owner-password"))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {"username":"OWNER","password":"replacement-password"}
+                                """))
+                .andExpect(status().isConflict());
+
+        mockMvc.perform(post("/api/auth/register")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                                 {"id":%d,"username":"new-user","password":"new-user-password","role":"ROLE_ADMIN"}
@@ -188,6 +203,94 @@ class PantryPlannerApplicationTests {
 
     @Test
     @Transactional
+    void purchaseReceiptsAreVisibleOnlyToTheirOwner() throws Exception {
+        User owner = userRepository.findByUsername("owner").orElseThrow();
+        User otherUser = new User();
+        otherUser.setUsername("purchase-viewer");
+        otherUser.setPassword(passwordEncoder.encode("purchase-viewer-password"));
+        otherUser.setRole(Role.ROLE_USER);
+        userRepository.save(otherUser);
+
+        Purchase purchase = new Purchase(
+                owner,
+                ingredientRepository.findAll().get(0),
+                new BigDecimal("2.5"),
+                "kg",
+                new BigDecimal("12.50"));
+        purchaseRepository.saveAndFlush(purchase);
+
+        mockMvc.perform(get("/api/purchases/" + purchase.getId())
+                        .header("Authorization", "Bearer " + loginToken("owner", "test-owner-password")))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(purchase.getId()))
+                .andExpect(jsonPath("$.quantity").value(2.5))
+                .andExpect(jsonPath("$.price").value(12.50));
+
+        mockMvc.perform(get("/api/purchases/" + purchase.getId())
+                        .header("Authorization", "Bearer " + loginToken(
+                                "purchase-viewer", "purchase-viewer-password")))
+                .andExpect(status().isNotFound());
+
+        mockMvc.perform(get("/api/purchases/" + Long.MAX_VALUE)
+                        .header("Authorization", "Bearer " + loginToken("owner", "test-owner-password")))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    @Transactional
+    void pantryWritesCannotCreateGlobalIngredients() throws Exception {
+        long ingredientCount = ingredientRepository.count();
+        String existingIngredient = ingredientRepository.findAll().get(0).getName();
+
+        mockMvc.perform(post("/api/pantry")
+                        .header("Authorization", "Bearer " + loginToken("owner", "test-owner-password"))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {"ingredientName":"unreviewed-test-ingredient"}
+                                """))
+                .andExpect(status().isNotFound());
+
+        assertThat(ingredientRepository.count()).isEqualTo(ingredientCount);
+        assertThat(ingredientRepository.findByName("unreviewed-test-ingredient")).isEmpty();
+
+        mockMvc.perform(post("/api/pantry")
+                        .header("Authorization", "Bearer " + loginToken("owner", "test-owner-password"))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(
+                                java.util.Map.of("ingredientName", existingIngredient))))
+                .andExpect(status().isOk());
+
+        assertThat(ingredientRepository.count()).isEqualTo(ingredientCount);
+    }
+
+    @Test
+    @Transactional
+    void recipeResponsesDoNotExposeCreatorAccounts() throws Exception {
+        var recipe = recipeRepository.findAll().get(0);
+        recipe.setImageUrl("https://images.pexels.com/photos/123/food.jpeg");
+        recipe.setImageSourceUrl("https://www.pexels.com/photo/food-123/");
+        recipe.setImagePhotographer("Test Photographer");
+        recipe.setImagePhotographerUrl("https://www.pexels.com/@test-photographer/");
+        recipeRepository.save(recipe);
+
+        mockMvc.perform(get("/api/recipes/" + recipe.getId())
+                        .header("Authorization", "Bearer " + loginToken("owner", "test-owner-password")))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.user").doesNotExist())
+                .andExpect(jsonPath("$.imageUrl")
+                        .value("https://images.pexels.com/photos/123/food.jpeg"))
+                .andExpect(jsonPath("$.imageSourceUrl")
+                        .value("https://www.pexels.com/photo/food-123/"))
+                .andExpect(jsonPath("$.imagePhotographer").value("Test Photographer"))
+                .andExpect(jsonPath("$.imagePhotographerUrl")
+                        .value("https://www.pexels.com/@test-photographer/"))
+                .andExpect(jsonPath("$.imageLookupAttemptedAt").doesNotExist())
+                .andExpect(jsonPath("$.imageLookupRetryAt").doesNotExist())
+                .andExpect(jsonPath("$.imageLookupFailures").doesNotExist());
+    }
+
+    @Test
+    @Transactional
     void jwtPrincipalAndRolesWorkAcrossApplicationRoutes() throws Exception {
         User user = new User();
         user.setUsername("jwt-user");
@@ -232,19 +335,46 @@ class PantryPlannerApplicationTests {
     }
 
     @Test
-    void registrationRequiresAdminAuthentication() throws Exception {
+    @Transactional
+    void userRegistrationIsPublicAndAdminRegistrationStaysProtected() throws Exception {
         mockMvc.perform(post("/api/auth/register")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                                 {"username":"public-user","password":"public-password"}
                                 """))
-                .andExpect(status().isUnauthorized());
+                .andExpect(status().isCreated());
+
+        User publicUser = userRepository.findByUsername("public-user").orElseThrow();
+        assertThat(publicUser.getRole()).isEqualTo(Role.ROLE_USER);
+        assertThat(passwordEncoder.matches("public-password", publicUser.getPassword())).isTrue();
+
+        String userToken = loginToken("public-user", "public-password");
+        mockMvc.perform(post("/api/auth/register-admin")
+                        .header("Authorization", "Bearer " + userToken)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {"username":"forbidden-admin","password":"another-password"}
+                                """))
+                .andExpect(status().isForbidden());
+
         mockMvc.perform(post("/api/auth/register-admin")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                                 {"username":"another-admin","password":"another-password"}
                                 """))
                 .andExpect(status().isUnauthorized());
+
+        mockMvc.perform(post("/api/auth/register-admin")
+                        .header("Authorization", "Bearer " + loginToken("owner", "test-owner-password"))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {"username":"created-admin","password":"another-password"}
+                                """))
+                .andExpect(status().isCreated());
+
+        User createdAdmin = userRepository.findByUsername("created-admin").orElseThrow();
+        assertThat(createdAdmin.getRole()).isEqualTo(Role.ROLE_ADMIN);
+        assertThat(passwordEncoder.matches("another-password", createdAdmin.getPassword())).isTrue();
     }
 
     @Test
@@ -256,7 +386,7 @@ class PantryPlannerApplicationTests {
 
     @Test
     void corsAllowsOnlyTheGitHubPagesOrigin() throws Exception {
-        mockMvc.perform(options("/api/auth/login")
+        mockMvc.perform(options("/api/auth/register")
                         .header("Origin", "https://jay0078-gif.github.io")
                         .header("Access-Control-Request-Method", "POST")
                         .header("Access-Control-Request-Headers", "content-type"))

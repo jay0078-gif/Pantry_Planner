@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
-import { recipeCover, recipeImage } from "../lib/images";
+import RecipePhoto from "../components/RecipePhoto";
 
 export default function RecipesPage() {
   const [recipes, setRecipes] = useState([]);
@@ -112,16 +112,12 @@ export default function RecipesPage() {
                                shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-200"
                   >
                     {/* Image */}
-                    <img
-                      src={recipeImage(r.name, r.imageUrl)}
-                      alt={r.name}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    <RecipePhoto
+                      photo={r}
+                      containerClassName="overflow-hidden"
+                      imageClassName="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                      attributionClassName="px-4 pt-2"
                       loading="lazy"
-                      decoding="async"
-                      onError={(event) => {
-                        event.currentTarget.onerror = null;
-                        event.currentTarget.src = recipeCover(r.name);
-                      }}
                     />
 
                     {/* Content */}

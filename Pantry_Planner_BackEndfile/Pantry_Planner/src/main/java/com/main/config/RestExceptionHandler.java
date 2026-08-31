@@ -1,9 +1,11 @@
 package com.main.config;
 
+import com.main.exception.AuthRateLimitExceededException;
 import com.main.exception.ResourceNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -39,6 +41,13 @@ public class RestExceptionHandler {
     @ExceptionHandler(AuthenticationException.class)
     public ResponseEntity<Map<String, String>> handleAuthentication(AuthenticationException exception) {
         return error(HttpStatus.UNAUTHORIZED, "Invalid username or password");
+    }
+
+    @ExceptionHandler(AuthRateLimitExceededException.class)
+    public ResponseEntity<Map<String, String>> handleAuthRateLimit(AuthRateLimitExceededException exception) {
+        return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS)
+                .header(HttpHeaders.RETRY_AFTER, Long.toString(exception.getRetryAfterSeconds()))
+                .body(Map.of("error", "Too many attempts. Please try again later"));
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)

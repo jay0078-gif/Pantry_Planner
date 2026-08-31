@@ -63,11 +63,14 @@ public class SuggestionService {
 
             int missing = total - matched;
             if (missing <= maxMissing) {
-                String image = photoService.getUrlOrSearch(r.getImageUrl(), r.getName());
+                String image = photoService.getUrl(r.getImageUrl());
                 out.add(new SuggestionDTO(
                         r.getId(),
                         r.getName(),
                         image,
+                        r.getImageSourceUrl(),
+                        r.getImagePhotographer(),
+                        r.getImagePhotographerUrl(),
                         total,
                         matched,
                         missing,

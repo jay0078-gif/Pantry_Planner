@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../api";
-import { recipeCover, recipeImage } from "../lib/images";
+import RecipePhoto from "../components/RecipePhoto";
 
 export default function RecipesPage() {
   const [recipes, setRecipes] = useState([]);
@@ -112,16 +112,12 @@ export default function RecipesPage() {
                     </div>
                   )}
 
-                  <img
-                    src={recipeImage(r.name, r.imageUrl)}
-                    alt={r.name}
-                    className="mt-2 h-48 w-full rounded-md object-cover"
+                  <RecipePhoto
+                    photo={r}
+                    containerClassName="mt-2"
+                    imageClassName="h-48 w-full rounded-md object-cover"
+                    attributionClassName="mt-2"
                     loading="lazy"
-                    decoding="async"
-                    onError={(event) => {
-                      event.currentTarget.onerror = null;
-                      event.currentTarget.src = recipeCover(r.name);
-                    }}
                   />
                 </li>
               ))}

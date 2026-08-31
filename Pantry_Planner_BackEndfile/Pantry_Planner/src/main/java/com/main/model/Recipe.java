@@ -1,8 +1,10 @@
 package com.main.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,10 +28,29 @@ public class Recipe {
     @Column(length = 1000)
     private String imageUrl;
 
+    @Column(length = 1000)
+    private String imageSourceUrl;
+
+    @Column(length = 200)
+    private String imagePhotographer;
+
+    @Column(length = 1000)
+    private String imagePhotographerUrl;
+
+    @JsonIgnore
+    private Instant imageLookupAttemptedAt;
+
+    @JsonIgnore
+    private Instant imageLookupRetryAt;
+
+    @JsonIgnore
+    private int imageLookupFailures;
+
     // 🧑‍🍳  Recipe belongs to a user (creator)
     // removed 'nullable = false' so seeding/test data without user won't crash
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
     // 🍅 recipe ingredients
@@ -59,6 +80,32 @@ public class Recipe {
 
     public String getImageUrl() { return imageUrl; }
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+
+    public String getImageSourceUrl() { return imageSourceUrl; }
+    public void setImageSourceUrl(String imageSourceUrl) { this.imageSourceUrl = imageSourceUrl; }
+
+    public String getImagePhotographer() { return imagePhotographer; }
+    public void setImagePhotographer(String imagePhotographer) { this.imagePhotographer = imagePhotographer; }
+
+    public String getImagePhotographerUrl() { return imagePhotographerUrl; }
+    public void setImagePhotographerUrl(String imagePhotographerUrl) {
+        this.imagePhotographerUrl = imagePhotographerUrl;
+    }
+
+    public Instant getImageLookupAttemptedAt() { return imageLookupAttemptedAt; }
+    public void setImageLookupAttemptedAt(Instant imageLookupAttemptedAt) {
+        this.imageLookupAttemptedAt = imageLookupAttemptedAt;
+    }
+
+    public Instant getImageLookupRetryAt() { return imageLookupRetryAt; }
+    public void setImageLookupRetryAt(Instant imageLookupRetryAt) {
+        this.imageLookupRetryAt = imageLookupRetryAt;
+    }
+
+    public int getImageLookupFailures() { return imageLookupFailures; }
+    public void setImageLookupFailures(int imageLookupFailures) {
+        this.imageLookupFailures = imageLookupFailures;
+    }
 
     public User getUser() { return user; }
     public void setUser(User user) { this.user = user; }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../api";
-import { recipeCover, recipeImage } from "../lib/images";
+import RecipePhoto from "../components/RecipePhoto";
 
 export default function RecipeDetail() {
   const { id } = useParams();
@@ -54,27 +54,14 @@ export default function RecipeDetail() {
   if (error) return <div className="p-4 text-red-600">{error}</div>;
   if (!recipe) return <div className="p-4">Recipe not found.</div>;
 
-  const fallbackImage = recipeCover(recipe.name);
-  const hero = recipeImage(recipe.name, recipe.imageUrl);
-
   return (
     <div className="p-4 max-w-3xl mx-auto">
-      <div className="mb-4 rounded-xl overflow-hidden bg-slate-100">
-        <img
-          src={hero}
-          alt={recipe.name}
-          className="w-full h-56 sm:h-72 md:h-80 object-cover"
-          decoding="async"
-          onError={(e) => {
-            if (
-              !e.currentTarget.src.endsWith(fallbackImage)
-            ) {
-              e.currentTarget.onerror = null;
-              e.currentTarget.src = fallbackImage;
-            }
-          }}
-        />
-      </div>
+      <RecipePhoto
+        photo={recipe}
+        containerClassName="mb-4 rounded-xl overflow-hidden bg-slate-100"
+        imageClassName="w-full h-56 sm:h-72 md:h-80 object-cover"
+        attributionClassName="mb-4"
+      />
 
       <h1 className="text-2xl font-semibold mb-4">{recipe.name}</h1>
 

@@ -20,12 +20,18 @@ services:
         sync: false
       - key: JWT_SECRET
         generateValue: true
+      - key: PEXELS_API_KEY
+        sync: false
+      - key: PEXELS_BACKFILL_RESERVE
+        value: "25"
       - key: JWT_ISSUER
         value: pantry-planner
       - key: JWT_AUDIENCE
         value: pantry-planner-web
       - key: JWT_TTL
         value: PT30M
+      - key: AUTH_TRUSTED_CLIENT_IP_HEADER
+        value: CF-Connecting-IP
       - key: CORS_ALLOWED_ORIGINS
         value: https://jay0078-gif.github.io
       - key: HIBERNATE_DDL_AUTO
@@ -44,5 +50,17 @@ services:
         value: never
       - key: SERVER_ERROR_INCLUDE_STACKTRACE
         value: never
-      - key: PHOTOS_BACKFILL_ON_START
-        value: "false"
+      - key: PHOTOS_BACKFILL_ENABLED
+        value: "true"
+      - key: PHOTOS_BACKFILL_BATCH_SIZE
+        value: "100"
+      - key: PHOTOS_BACKFILL_INITIAL_DELAY
+        value: PT10S
+      - key: PHOTOS_BACKFILL_INTERVAL
+        value: PT1H
+      - key: PHOTOS_BACKFILL_NOT_FOUND_RETRY
+        value: PT720H
+      - key: PHOTOS_BACKFILL_FAILURE_RETRY
+        value: PT1H
+      - key: PHOTOS_BACKFILL_MAX_FAILURE_RETRY
+        value: PT24H

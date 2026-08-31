@@ -82,7 +82,11 @@ export default function PantryPage() {
       await loadPantry();
     } catch (e) {
       console.error("❌ POST /pantry failed:", e?.response || e);
-      alert("Failed to add item. Please try again.");
+      alert(
+        e?.response?.status === 404
+          ? "Choose an ingredient from the recipe catalog."
+          : "Failed to add item. Please try again."
+      );
     }
   };
 
@@ -136,6 +140,7 @@ export default function PantryPage() {
             placeholder="Add ingredient (tomato, pasta, egg…)"
             value={q}
             onChange={(e) => setQ(e.target.value)}
+            maxLength={120}
             onFocus={() => q.trim() && setShowDropdown(true)}
             onKeyDown={onKeyDown}
           />
@@ -152,13 +157,6 @@ export default function PantryPage() {
                   {s.name}
                 </button>
               ))}
-              <button
-                type="button"
-                className="w-full text-left px-3 py-2 text-emerald-700 hover:bg-slate-100 border-t border-slate-200"
-                onClick={() => addItem(q)}
-              >
-                Add “{q}”
-              </button>
             </div>
           )}
         </div>

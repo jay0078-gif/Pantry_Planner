@@ -1,29 +1,19 @@
 import Card from "./Card";
 import { Link } from "react-router-dom";
-import { recipeCover, recipeImage } from "../lib/images";
+import RecipePhoto from "./RecipePhoto";
 
 export default function RecipeCard({ s }) {
 const pct = s.totalIngredients ? Math.round((s.matched / s.totalIngredients) * 100) : 0;
-const fallbackImage = recipeCover(s.name);
-const img = recipeImage(s.name, s.imageUrl);
 
 return (
 <Card>
-<div className="w-full h-48 overflow-hidden">
-<img
-  src={img}
-  alt={s.name}
-  className="w-full h-full object-cover"
+<RecipePhoto
+  photo={s}
+  containerClassName="w-full h-48 overflow-hidden"
+  imageClassName="w-full h-full object-cover"
+  attributionClassName="px-4 pt-2"
   loading="lazy"
-  decoding="async"
-  onError={(e) => {
-    if (!e.currentTarget.src.endsWith(fallbackImage)) {
-      e.currentTarget.onerror = null;
-      e.currentTarget.src = fallbackImage;
-    }
-  }}
 />
-</div>
 
 <div className="p-4">
     <div className="flex items-start justify-between">

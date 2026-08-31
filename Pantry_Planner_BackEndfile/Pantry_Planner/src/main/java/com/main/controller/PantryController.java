@@ -8,6 +8,7 @@ import com.main.model.User;
 import com.main.repository.PantryItemRepository;
 import com.main.repository.UserRepository;
 import com.main.service.IngredientService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,11 +43,14 @@ public class PantryController {
     @PostMapping
     public ResponseEntity<PantryItem> add(
             Principal principal,
-            @RequestBody PantryUpsertRequest req
+            @Valid @RequestBody PantryUpsertRequest req
     ) {
         User user = getUser(principal);
 
-        Ingredient ing = ingredientService.findOrCreate(req.ingredientName());
+        if (req.ingredientName() == null || req.ingredientName().isBlank()) {
+            throw new IllegalArgumentException("Ingredient name is required");
+        }
+        Ingredient ing = ingredientService.findExisting(req.ingredientName());
 
         // look up by current user + ingredient
         PantryItem item = repo.findByUserAndIngredientId(user, ing.getId())
@@ -68,7 +72,7 @@ public class PantryController {
     @PatchMapping("/{id}")
     public ResponseEntity<PantryItem> update(
             @PathVariable Long id,
-            @RequestBody PantryUpsertRequest req,
+            @Valid @RequestBody PantryUpsertRequest req,
             Principal principal
     ) {
         User user = getUser(principal);

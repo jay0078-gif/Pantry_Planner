@@ -8,6 +8,7 @@ import {
   logout,
 } from "./api";
 import TopNav from "./components/TopNav";
+import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import PantryPage from "./pages/PantryPage";
 import ReceiptPage from "./pages/ReceiptPage";
@@ -15,6 +16,7 @@ import RecipeDetail from "./pages/RecipeDetail";
 import RecipesPage from "./pages/RecipesPage";
 import ReviewRecipesPage from "./pages/ReviewRecipesPage";
 import ShoppingListPage from "./pages/ShoppingListPage";
+import SignUpPage from "./pages/SignUpPage";
 import SubmitRecipePage from "./pages/SubmitRecipePage";
 import SuggestionsPage from "./pages/SuggestionsPage";
 
@@ -39,7 +41,9 @@ function connectionError(error) {
 
 export default function App() {
   const [role, setRole] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(
+    () => isBackendConfigured && hasAuthToken()
+  );
   const [authError, setAuthError] = useState("");
 
   useEffect(() => {
@@ -110,33 +114,65 @@ export default function App() {
     );
   }
 
-  if (!role) {
-    return (
-      <LoginPage
-        backendConfigured={isBackendConfigured}
-        initialError={authError}
-        onLogin={handleLogin}
-      />
-    );
-  }
-
   return (
     <>
       <TopNav role={role} onLogout={handleLogout} />
       <Routes>
-        <Route path="/" element={<SuggestionsPage />} />
-        <Route path="/pantry" element={<PantryPage />} />
-        <Route path="/recipes" element={<RecipesPage />} />
-        <Route path="/recipes/:id" element={<RecipeDetail />} />
-        <Route path="/shopping-list" element={<ShoppingListPage />} />
-        <Route path="/receipt/:id" element={<ReceiptPage />} />
+        <Route
+          path="/"
+          element={
+            role ? (
+              <Navigate to="/suggestions" replace />
+            ) : (
+              <HomePage notice={authError} />
+            )
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            role ? (
+              <Navigate to="/suggestions" replace />
+            ) : (
+              <LoginPage
+                backendConfigured={isBackendConfigured}
+                initialError={authError}
+                onLogin={handleLogin}
+              />
+            )
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            role ? (
+              <Navigate to="/suggestions" replace />
+            ) : (
+              <SignUpPage backendConfigured={isBackendConfigured} />
+            )
+          }
+        />
+
+        {role && (
+          <>
+            <Route path="/suggestions" element={<SuggestionsPage />} />
+            <Route path="/pantry" element={<PantryPage />} />
+            <Route path="/recipes" element={<RecipesPage />} />
+            <Route path="/recipes/:id" element={<RecipeDetail />} />
+            <Route path="/shopping-list" element={<ShoppingListPage />} />
+            <Route path="/receipt/:id" element={<ReceiptPage />} />
+          </>
+        )}
         {role === "ROLE_USER" && (
           <Route path="/submit-recipe" element={<SubmitRecipePage />} />
         )}
         {role === "ROLE_ADMIN" && (
           <Route path="/review-recipes" element={<ReviewRecipesPage />} />
         )}
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route
+          path="*"
+          element={<Navigate to={role ? "/suggestions" : "/"} replace />}
+        />
       </Routes>
     </>
   );

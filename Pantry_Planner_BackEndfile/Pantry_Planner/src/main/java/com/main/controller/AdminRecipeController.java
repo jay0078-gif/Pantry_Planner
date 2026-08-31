@@ -8,6 +8,7 @@ import com.main.model.RecipeSubmission;
 import com.main.repository.IngredientRepository;
 import com.main.repository.RecipeRepository;
 import com.main.repository.RecipeSubmissionRepository;
+import com.main.service.PhotoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,14 +31,17 @@ public class AdminRecipeController {
     private final RecipeSubmissionRepository submissionRepository;
     private final RecipeRepository recipeRepository;
     private final IngredientRepository ingredientRepository;
+    private final PhotoService photoService;
 
     public AdminRecipeController(
             RecipeSubmissionRepository submissionRepository,
             RecipeRepository recipeRepository,
-            IngredientRepository ingredientRepository) {
+            IngredientRepository ingredientRepository,
+            PhotoService photoService) {
         this.submissionRepository = submissionRepository;
         this.recipeRepository = recipeRepository;
         this.ingredientRepository = ingredientRepository;
+        this.photoService = photoService;
     }
 
     @GetMapping("/pending")
@@ -74,6 +78,7 @@ public class AdminRecipeController {
             recipe.addIngredient(recipeIngredient);
         }
 
+        photoService.ensureImage(recipe);
         recipeRepository.save(recipe);
         submission.setApproved(true);
         submission.setApprovedAt(LocalDateTime.now());
